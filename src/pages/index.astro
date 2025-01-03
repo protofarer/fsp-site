@@ -1,18 +1,90 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
-import Biographies from '../components/Biographies.astro'
-import About from '../components/About.astro'
-import Services from '../components/Services.astro'
-import Contact from '../components/Contact.astro'
-import CalendarOfEvents from '../components/CalendarOfEvents.astro'
 ---
 
 <Layout>
 	<Header />
-	<Services />
-	<CalendarOfEvents />
-	<Biographies />
-	<About />
-	<Contact />
+		<section id="services">
+			<h1>Services</h1>
+			<ul>
+				<li>Hitting</li>
+				<li>Pitching</li>
+				<li>Fielding</li>
+				<li>Catching</li>
+			</ul>
+		</section>
+	<section id="calendar-of-events">
+		<h1>Calendar of Events</h1>
+		<ul>
+			<li>Spring Hitting Camp</li>
+			<li>Spring Catching Camp</li>
+			<li>Summer Hitting Camp</li>
+			<li>Summer Catching Camp</li>
+		</ul>
+	</section>
+	<section id="biographies">
+		<div>
+			<h2>
+				Steven Baron
+			</h2>
+			<p>
+				Some bla bla bla
+				Some bla bla bla
+				Some bla bla bla
+				Some bla bla bla
+				Some bla bla bla
+				Some bla bla bla
+			</p>
+		</div>
+		<div>
+			<h2>
+				Jonny Locher
+			</h2>
+			<p>
+				Some bla bla bla
+				Some bla bla bla
+				Some bla bla bla
+				Some bla bla bla
+				Some bla bla bla
+				Some bla bla bla
+			</p>
+		</div>
+	</section>
+	<section id="about">
+		<h2>Mission</h2>
+		<p>
+			Some bla bla bla
+			Some bla bla bla
+			Some bla bla bla
+			Some bla bla bla
+			Some bla bla bla
+			Some bla bla bla
+		</p>
+		<h2>Philosophy</h2>
+		<p>
+			Some bla bla bla
+			Some bla bla bla
+			Some bla bla bla
+			Some bla bla bla
+			Some bla bla bla
+			Some bla bla bla
+		</p>
+		<h2>Values</h2>
+		<p>
+			Some bla bla bla
+			Some bla bla bla
+			Some bla bla bla
+			Some bla bla bla
+			Some bla bla bla
+			Some bla bla bla
+		</p>
+	</section>
+	<section id="contact">
+		<h1>Contact</h1>
+		<input type="text" />
+		<input type="text" />
+		<input type="text" />
+		<textarea />
+	</section>
 </Layout>
