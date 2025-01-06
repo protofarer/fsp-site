@@ -1,0 +1,32 @@
+---
+interface Props {
+  class?: string;
+  fluid?: boolean;
+  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+}
+
+const { class: className = '', fluid = false, size = 'lg' } = Astro.props;
+
+// Mantine-like sizes (can be customized)
+const sizes = {
+  xs: 'max-w-xs', // 320px
+  sm: 'max-w-sm', // 384
+  md: 'max-w-3xl', // 768px
+  lg: 'max-w-5xl', // 1024px
+  xl: 'max-w-7xl', // 1280px
+};
+
+const containerClass = [
+  'mx-auto', // Center horizontally
+  'w-full', // Take full width
+  'px-4', // Padding for mobile
+  'sm:px-6', // Larger padding on small screens
+  'lg:px-8', // Even larger padding on large screens
+  !fluid && sizes[size], // Apply max-width unless fluid is true
+  className, // Allow custom classes
+];
+---
+
+<div class:list={containerClass}>
+  <slot />
+</div>

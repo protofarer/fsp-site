@@ -1,0 +1,56 @@
+---
+interface Props {
+  id?: string;
+  title?: string;
+  class?: string;
+  titleSize?: 'sm' | 'md' | 'lg';
+  titleColor?: string;
+  spacing?: 'sm' | 'md' | 'lg';
+  background?: 'none' | 'light' | 'dark';
+}
+
+const {
+  id,
+  title,
+  class: className = '',
+  titleSize = 'lg',
+  titleColor = 'text-slate-700',
+  spacing = 'md',
+  background = 'none',
+} = Astro.props;
+
+const titleSizes = {
+  sm: 'text-xl font-semibold',
+  md: 'text-2xl font-bold',
+  lg: 'text-3xl font-bold',
+};
+
+const titleClass = [titleColor, titleSizes[titleSize], "text-center"];
+
+const spacingSizes = {
+  sm: 'py-8',
+  md: 'py-12',
+  lg: 'py-16',
+};
+
+const backgrounds = {
+  none: '',
+  light: 'bg-gray-50 dark:bg-gray-800',
+  dark: 'bg-gray-100 dark:bg-gray-900',
+};
+
+const sectionClass = [
+  spacingSizes[spacing],
+  backgrounds[background],
+  className,
+];
+---
+
+<section id={id} class:list={sectionClass}>
+  <div class="space-y-6">
+    {title && <h2 class:list={titleClass}>{title}</h2>}
+    <div class="space-y-4">
+      <slot />
+    </div>
+  </div>
+</section>
