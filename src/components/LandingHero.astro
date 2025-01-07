@@ -1,3 +1,7 @@
+---
+import SITE_MAP from '../constants/site-map.ts'
+import ButtonLink from '../components/ButtonLink.astro'
+---
 <div class="bg-gray-800 space-y-12 py-8 md:py-12 flex flex-col items-center">
   <div class="text-lg md:text-2xl tracking-wider text-center text-white font-bold italic">
     FRONTIER SPORTS PERFORMANCE
@@ -6,15 +10,21 @@
     UNLOCK YOUR POTENTIAL IN STRENGTH AND ATHLETICS
   </h1>
   <div class="w-full pt-8 flex gap-6 md:gap-10 flex-nowrap justify-center items-center">
-    <button
-      class="w-2/5 px-3 py-2 md:w-auto md:px-6 md:py-3 font-bold bg-white text-black rounded-lg hover:bg-gray-300 transition-colors duration-200"
+    <ButtonLink
+    href={SITE_MAP.services}
+    variant='filled'
+    color='light'
+    class="font-bold w-2/5 md:w-auto md:px-6 md:py-3"
     >
       Start Training
-    </button>
-    <button
-      class="w-2/5 px-3 py-2 md:w-auto md:px-6 md:py-3 font-bold bg-white text-black rounded-lg hover:bg-gray-300 transition-colors duration-200"
+    </ButtonLink>
+    <ButtonLink
+    href={SITE_MAP.about}
+    variant='outline'
+    color='light'
+    class="font-bold w-2/5 md:w-auto md:px-6 md:py-3"
     >
       Learn More
-    </button>
+    </ButtonLink>
   </div>
 </div>

@@ -1,6 +1,7 @@
 ---
 import NavLink from './NavLink.astro';
 import SITE_MAP from '../constants/site-map'
+import CustomLink from './CustomLink.astro'
 
 const linkClassFull = 'font-bold tracking-wide';
 const linkClassCompact =
@@ -16,7 +17,10 @@ const linkItems = [
 <header class="sticky top-0 z-50 shadow-md flex justify-center bg-white">
   <nav class="w-full py-1 px-4 max-w-3xl">
     <div class="flex justify-between items-center">
+      <CustomLink href="/">
       <div class="font-bold tracking-wider text-emerald-500 text-xl border-2 border-gray-500 border-solid rounded-full px-2 py-1">FSP</div>
+
+      </CustomLink>
 
       <!-- Mobile menu button -->
       <button

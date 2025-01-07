@@ -2,17 +2,53 @@
 interface Props {
   href: string;
   class?: string;
+  variant?: 'filled' | 'outline';
+  color?: 'dark' | 'light';
 }
 
-const { href, class: className = ''} = Astro.props;
+const {
+  href,
+  class: className = '',
+  variant = 'filled',
+  color = 'dark',
+} = Astro.props;
 
-const buttonClass = 'inline-block px-4 py-2 bg-gray-800 text-white rounded-md hover:bg-gray-600 transition-colors'
-const computedClass = [className, buttonClass];
+const buttonClass =
+  'inline-block px-3 py-2 rounded-md transition-colors duration-200';
+
+const classFilled =
+  color === 'dark'
+    ? 'bg-gray-800 hover:bg-gray-600'
+    : 'bg-white hover:bg-gray-100';
+
+let classText = '';
+let colorBackground = '';
+let classHover = '';
+let classBorder = '';
+
+if ((color === 'dark') & (variant === 'filled')) {
+  classText = 'text-white';
+  colorBackground = 'bg-gray-800';
+  classHover = 'hover:bg-gray-700';
+} else if ((color === 'light') & (variant === 'filled')) {
+  classText = 'text-black';
+  colorBackground = 'bg-white';
+  classHover = 'hover:bg-gray-200';
+} else if ((color === 'light') & (variant === 'outline')) {
+  classText = 'text-white';
+  colorBackground = 'bg-transparent';
+  classBorder = 'border-2 border-solid border-white';
+  classHover = 'hover:text-emerald-300 hover:border-emerald-300';
+} else if ((color === 'dark') & (variant === 'outline')) {
+  classText = 'text-black';
+  colorBackground = 'bg-transparent';
+  classBorder = 'border-2 border-solid border-black';
+  classHover = 'hover:text-emerald-300 hover:border-emerald-300';
+}
+
+const computedClass = [buttonClass, classText, colorBackground, classHover, classBorder, className]
 ---
 
-<a
-  href={href}
-  class:list={computedClass}
->
+<a href={href} class:list={computedClass}>
   <slot />
 </a>
