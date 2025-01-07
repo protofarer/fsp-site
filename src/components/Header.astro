@@ -1,26 +1,27 @@
 ---
 import NavLink from './NavLink.astro';
+import SITE_MAP from '../constants/site-map'
+
 const linkClassFull = 'font-bold tracking-wide';
 const linkClassCompact =
   'font-bold tracking-wide block w-full text-center';
 const linkItems = [
-  { label: 'About', href: '#about' },
-  { label: 'Programs', href: '#programs' },
-  // { label: 'Calendar of Events', href: '#calendar-of-events' },
-  { label: 'Coaches', href: '#coaches' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'Services', href: SITE_MAP.services },
+  { label: 'Coaches', href: SITE_MAP.coaches },
+  { label: 'About', href: SITE_MAP.about },
+  { label: 'Contact', href: SITE_MAP.contact },
 ];
 ---
 
-<header class="sticky top-0 z-50 bg-blue-700 shadow-lg">
-  <nav class="py-1 px-4">
+<header class="sticky top-0 z-50 shadow-md flex justify-center bg-white">
+  <nav class="w-full py-1 px-4 max-w-3xl">
     <div class="flex justify-between items-center">
-      <div class="font-bold tracking-wider text-emerald-300 text-xl">FSP</div>
+      <div class="font-bold tracking-wider text-emerald-500 text-xl border-2 border-gray-500 border-solid rounded-full px-2 py-1">FSP</div>
 
       <!-- Mobile menu button -->
       <button
         id="menu-toggle"
-        class="block md:hidden p-2 text-emerald-300 hover:text-emerald-100 focus:outline-none"
+        class="block md:hidden p-2 text-black hover:text-gray-500 focus:outline-none"
         aria-label="Toggle menu"
       >
         <svg

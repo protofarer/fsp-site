@@ -1,0 +1,122 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CustomLink from '../../components/CustomLink.astro';
+import ButtonLink from '../../components/ButtonLink.astro'
+import SITE_MAP from '../../constants/site-map.ts';
+// TODO: make global accessible
+const classTextBase = 'text-gray-700 leading-relaxed text-base';
+const classCard = 'p-4 md:p-6 md:rounded-lg md:bg-white md:shadow-sm md:max-w-3xl';
+const classProgramTypography = 'space-y-4' + ' ' + classTextBase;
+const classProgramTitle = 'text-lg font-semibold text-gray-900 text-center';
+const classInnerList = 'space-y-2 list-disc pl-10';
+---
+
+<BaseLayout>
+  <div class="flex flex-col items-center md:px-6 gap-8 mt-6">
+    <h1 class="text-xl font-bold md:text-2xl text-gray-900 text-center">
+      Services
+    </h1>
+    <div class:list={[classCard]}>
+      <div class={classProgramTypography}>
+        <h2 class={classProgramTitle}>Hitting</h2>
+        <p>
+          Take your hitting to the next level with progressive, 1-hour
+          personalized hitting sessions.
+        </p>
+        <div>
+          <p class="mb-2">Each session includes:</p>
+          <ul class={classInnerList}>
+            <li>
+              <span>Tee Work with Expert Feedback:</span>{' '}
+              Build solid fundamentals through intentional drills and dialogue to
+              refine your mechanics.
+            </li>
+            <li>
+              <span>Front Toss or Seated Toss:</span>{' '}
+              Targeted drills to master contact points and drive consistency in your
+              swing.
+            </li>
+            <li>
+              <span>Live Hitting Scenarios:</span> Apply your skills in game-like
+              situations, focusing on approach, timing, and execution.
+            </li>
+          </ul>
+        </div>
+        <p>
+        Book your session today and gain the confidence, precision, and power to dominate at the plate.
+          Spots are limited—secure yours now!
+        </p>
+        <div class='flex justify-center items-center'>
+          <ButtonLink href={SITE_MAP.contact}>Contact Us</ButtonLink>
+        </div>
+      </div>
+    </div>
+    <div class={classCard}>
+      <div class={classProgramTypography}>
+        <h3 class={classProgramTitle}>Catching</h3>
+        <p class="mb-2">
+          Elevate your game behind the plate with 1-hour customized catching
+          sessions focused on the three core skills:
+        </p>
+        <ul class={classInnerList}>
+          <li>
+            Receiving: Develop soft, quiet hands to frame pitches and win
+            strikes for your pitcher.
+          </li>
+          <li>
+            Blocking: Build agility and toughness with drills to keep every ball
+            in front and shut down the running game.
+          </li>
+          <li>
+            Throwing: Improve arm strength, accuracy, and footwork to control
+            the base paths like a pro.
+          </li>
+        </ul>
+        <p>
+          Step up your game today with expert coaching designed to make you the
+          backbone of your team!
+        </p>
+        <div class='flex justify-center items-center'>
+          <ButtonLink href={SITE_MAP.contact}>Contact Us</ButtonLink>
+        </div>
+      </div>
+    </div>
+    <div class={classCard}>
+      <div class={classProgramTypography}>
+        <h3 class={classProgramTitle}>Pitching</h3>
+        <p>
+          Take Your Pitching to the Next Level with Progressive, 1-Hour
+          Personalized Pitching Sessions
+        </p>
+        <div>
+          <p class="mb-2">
+            Each session is designed to build your skills step by step, focusing
+            on mechanics, control, and power:
+          </p>
+          <ul class={classInnerList}>
+            <li>
+              Drill Work with Expert Feedback: Build a strong foundation through
+              focused drills and personalized feedback to refine your mechanics.
+            </li>
+
+            <li>
+              Throwing Progressions: Develop arm strength, accuracy, and
+              consistency through targeted throwing exercises.
+            </li>
+            <li>
+              Bullpen Work: Put it all together in game-like bullpen scenarios,
+              honing your command, pitch selection, and mental approach.
+            </li>
+          </ul>
+        </div>
+        <p>
+          Book your session today and gain the confidence, precision, and power
+          to dominate on the mound. Spots are limited—secure yours now!
+        </p>
+        <div class='flex justify-center items-center'>
+          <ButtonLink href={SITE_MAP.contact}>Contact Us</ButtonLink>
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
