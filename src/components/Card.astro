@@ -1,0 +1,35 @@
+---
+interface Props {
+  class?: string;
+  variant?: 'dark' | 'light';
+}
+
+const { class: className = '', variant = 'light' } = Astro.props;
+
+const classCard = 'p-4 md:p-6 rounded-lg space-y-4 md:shadow-lg';
+let classTypography = ''
+let colorBackground = '';
+let classBorder = '';
+
+if (variant === 'dark') {
+  colorBackground = 'bg-gray-800';
+  classBorder = 'border-2 border-solid border-black';
+  classTypography = '[&_*]:text-white'
+} else if (variant === 'light') {
+  colorBackground = 'bg-white';
+  classBorder = 'md:border md:border-solid md:border-gray-200';
+  classTypography = '[&_*]:text-black'
+}
+
+const computedClass = [
+  classCard,
+  colorBackground,
+  classBorder,
+  classTypography,
+  className, // leave this last so it overrides above classes
+];
+---
+
+<div class:list={computedClass}>
+  <slot />
+</div>

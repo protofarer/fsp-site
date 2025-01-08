@@ -4,6 +4,7 @@ interface Props {
   class?: string;
   variant?: 'filled' | 'outline';
   color?: 'dark' | 'light';
+  bold?: boolean;
 }
 
 const {
@@ -11,44 +12,51 @@ const {
   class: className = '',
   variant = 'filled',
   color = 'dark',
+  bold = false,
 } = Astro.props;
 
-const buttonClass =
+const classBase =
   'inline-block px-3 py-2 rounded-md transition-colors duration-200';
 
-const classFilled =
-  color === 'dark'
-    ? 'bg-gray-800 hover:bg-gray-600'
-    : 'bg-white hover:bg-gray-100';
-
-let classText = 'text-center';
+let classText = '';
 let colorBackground = '';
 let classHover = '';
 let classBorder = '';
 
-if ((color === 'dark') & (variant === 'filled')) {
-  classText = 'text-white';
+if (color === 'dark' && variant === 'filled') {
+  classText = '!text-white';
   colorBackground = 'bg-gray-800';
   classHover = 'hover:bg-gray-700';
-} else if ((color === 'light') & (variant === 'filled')) {
-  classText = 'text-black';
+} else if (color === 'light' && variant === 'filled') {
+  classText = '!text-black';
   colorBackground = 'bg-white';
   classHover = 'hover:bg-gray-200';
-} else if ((color === 'light') & (variant === 'outline')) {
-  classText = 'text-white';
+} else if (color === 'light' && variant === 'outline') {
+  classText = '!text-white';
   colorBackground = 'bg-transparent';
   classBorder = 'border-2 border-solid border-white';
   classHover = 'hover:text-emerald-300 hover:border-emerald-300';
-} else if ((color === 'dark') & (variant === 'outline')) {
-  classText = 'text-black';
+} else if (color === 'dark' && variant === 'outline') {
+  classText = '!text-black';
   colorBackground = 'bg-transparent';
   classBorder = 'border-2 border-solid border-black';
   classHover = 'hover:text-emerald-300 hover:border-emerald-300';
 }
 
-const computedClass = [buttonClass, classText, colorBackground, classHover, classBorder, className]
----
+classText += bold ? ' font-bold' : ''
+classText += ' text-center'
 
-<a href={href} class:list={computedClass}>
-  <slot />
-</a>
+const computedClass = [
+  classBase,
+  classText,
+  colorBackground,
+  classHover,
+  classBorder,
+  className,
+];
+---
+<span class='isolate'>
+  <a href={href} class:list={computedClass}>
+    <slot />
+  </a>
+</span>
