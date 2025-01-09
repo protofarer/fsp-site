@@ -15,7 +15,8 @@ const classTextBase = 'text-gray-700 leading-relaxed text-base';
 const classCard =
   'p-4 md:p-6 md:rounded-lg md:bg-white space-y-4 md:border md:border-solid md:border-gray-300 md:shadow-lg';
 const classProgramTypography = 'space-y-4' + ' ' + classTextBase;
-const classProgramTitle = 'text-lg md:text-xl font-bold text-gray-900 text-center';
+const classProgramTitle =
+  'text-lg md:text-xl font-bold text-gray-900 text-center';
 const classInnerList = 'space-y-2 list-disc pl-10';
 
 const inputClasses =
@@ -32,12 +33,17 @@ const labelClasses = 'text-base text-gray-800 font-bold';
         <div
           class="text-lg md:text-2xl md:max-w-4xl px-4 text-gray-700 leading-relaxed text-center space-y-4"
         >
-          <p class="italic">
+          <p>
             At the heart of Frontier Sports Performance is a simple truth:
-            greatness begins with a foundation of physical and mental
-            resilience. Founded by Steven Baron and Jonathan Locher, Frontier
-            Sports Performance is the culmination of a lifelong journey in
-            athletics, fueled by lessons learned on and off the field.
+            <span class="italic">
+              greatness begins with a foundation of physical and mental
+              resilience.
+            </span>
+          </p>
+          <p>
+            Founded by Steven Baron and Jonathan Locher, Frontier Sports
+            Performance is the culmination of a lifelong journey in athletics,
+            fueled by lessons learned on and off the field.
           </p>
         </div>
       </div>
@@ -55,6 +61,7 @@ const labelClasses = 'text-base text-gray-800 font-bold';
             personalized hitting sessions.
           </p>
           <div class="flex justify-center items-center">
+            <a data-astro-reload href={SITE_MAP.servicePitching}>anchor</a>
             <ButtonLink href={SITE_MAP.serviceHitting}>Learn More</ButtonLink>
           </div>
         </Card>
@@ -102,13 +109,8 @@ const labelClasses = 'text-base text-gray-800 font-bold';
             >Read More</CustomLink
           >
         </div>
-      </div>
-      <div
-        class:list={[
-          classCard,
-          'md:shadow-lg md:border md:border-gray-300 md:border-solid',
-        ]}
-      >
+      </Card>
+      <Card variant="dark">
         <h2 class="text-xl font-semibold text-center">Jonny Locher</h2>
         <p class={classTextBase}>
           Jonny has successfully coached at youth, High School and Divison 1
@@ -124,7 +126,7 @@ const labelClasses = 'text-base text-gray-800 font-bold';
             >Read More</CustomLink
           >
         </div>
-      </div>
+      </Card>
     </div>
   </Section>
   <Section id="contact" title="Contact" spacing="lg">
