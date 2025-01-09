@@ -1,6 +1,11 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Section from '../../components/Section.astro';
+import { Image } from 'astro:assets'
+import coachBaronImage from '../../assets/bio-baron.jpeg'
+import coachLocherImage from '../../assets/bio-locher.jpeg'
+import PageTitle from '../../components/PageTitle.astro'
+import Card from '../../components/Card.astro';
 // TODO globalize or update for this page
 const classCard = 'p-4 md:p-6 rounded-lg bg-white shadow-sm';
 const classProgramTypography = 'space-y-4';
@@ -13,8 +18,16 @@ const classBodyText =
 ---
 
 <BaseLayout>
-  <div class="flex flex-col gap-6 items-center">
-    <Section id="coachBaron">
+  <div class="flex flex-col items-center md:px-6 gap-8 mt-6">
+    <PageTitle>Coaches</PageTitle>
+    <Card id="baron">
+        <div class="flex justify-center items-center">
+          <Image
+            src={coachBaronImage}
+            alt="Photo of Coach Steven Baron"
+            height={256}
+          />
+          </div>
       <div class="flex flex-col gap-1 items-center">
         <h2 class={classCoachName}>Steven Baron</h2>
         <p class={classSubname}>Co-Founder</p>
@@ -47,9 +60,16 @@ const classBodyText =
           next generation of athletes.
         </p>
       </div>
-    </Section>
+    </Card>
 
-    <Section id="coachLocher">
+    <Card id="locher">
+        <div class="flex justify-center items-center">
+          <Image
+            src={coachLocherImage}
+            alt="Photo of Coach Jonny Locher"
+            width={256}
+          />
+          </div>
       <div class="flex flex-col gap-1 items-center">
         <h2 class={classCoachName}>Jonny Locher</h2>
         <p class={classSubname}>Co-Founder</p>
@@ -82,6 +102,6 @@ const classBodyText =
           helping players become faster, stronger, and more powerful.
         </p>
       </div>
-    </Section>
+    </Card>
   </div>
 </BaseLayout>

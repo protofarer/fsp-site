@@ -2,7 +2,7 @@
 interface Props {
   href: string;
   class?: string;
-  variant?: 'filled' | 'outline';
+  variant?: 'filled' | 'outlined';
   color?: 'dark' | 'light';
   bold?: boolean;
 }
@@ -31,20 +31,20 @@ if (color === 'dark' && variant === 'filled') {
   classText = '!text-black';
   colorBackground = 'bg-white';
   classHover = 'hover:bg-gray-200';
-} else if (color === 'light' && variant === 'outline') {
+} else if (color === 'light' && variant === 'outlined') {
   classText = '!text-white';
   colorBackground = 'bg-transparent';
   classBorder = 'border-2 border-solid border-white';
   classHover = 'hover:text-emerald-300 hover:border-emerald-300';
-} else if (color === 'dark' && variant === 'outline') {
+} else if (color === 'dark' && variant === 'outlined') {
   classText = '!text-black';
   colorBackground = 'bg-transparent';
   classBorder = 'border-2 border-solid border-black';
   classHover = 'hover:text-emerald-300 hover:border-emerald-300';
 }
 
-classText += bold ? ' font-bold' : ''
-classText += ' text-center'
+classText += bold ? ' font-bold' : '';
+classText += ' text-center';
 
 const computedClass = [
   classBase,
@@ -55,8 +55,7 @@ const computedClass = [
   className,
 ];
 ---
-<span class='isolate'>
-  <a href={href} class:list={computedClass}>
-    <slot />
-  </a>
-</span>
+
+<a href={href} class:list={computedClass}>
+  <slot />
+</a>
