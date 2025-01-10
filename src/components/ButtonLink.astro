@@ -25,22 +25,22 @@ let classBorder = '';
 
 if (color === 'dark' && variant === 'filled') {
   classText = '!text-white';
-  colorBackground = 'bg-gray-800';
-  classHover = 'hover:bg-gray-700';
+  colorBackground = 'bg-slate-700';
+  classHover = 'hover:bg-slate-600';
 } else if (color === 'light' && variant === 'filled') {
-  classText = '!text-black';
+  classText = '!text-slate-700';
   colorBackground = 'bg-white';
-  classHover = 'hover:bg-gray-200';
+  classHover = 'hover:bg-slate-200';
 } else if (color === 'light' && variant === 'outlined') {
   classText = '!text-white';
   colorBackground = 'bg-transparent';
   classBorder = 'border-2 border-solid border-white';
-  classHover = 'hover:text-emerald-300 hover:border-emerald-300';
+  classHover = 'hover:!text-fsp-green hover:border-fsp-green';
 } else if (color === 'dark' && variant === 'outlined') {
-  classText = '!text-black';
+  classText = '!text-slate-700';
   colorBackground = 'bg-transparent';
-  classBorder = 'border-2 border-solid border-black';
-  classHover = 'hover:text-emerald-300 hover:border-emerald-300';
+  classBorder = 'border-2 border-solid border-slate-700';
+  classHover = 'hover:!text-fsp-green hover:border-fsp-green';
 }
 
 classText += bold ? ' font-bold' : '';

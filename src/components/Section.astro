@@ -36,7 +36,7 @@ const spacingSizes = {
 const backgrounds = {
   none: '',
   light: 'bg-white',
-  dark: 'bg-gray-100',
+  dark: 'bg-slate-700',
 };
 
 const sectionClass = [
@@ -47,8 +47,8 @@ const sectionClass = [
 ---
 
 <section id={id} class:list={sectionClass}>
-  <div class="space-y-6">
-    {title && <h2 class:list={titleClass}>{title}</h2>}
+  <div>
+    {title && <h2 class:list={[titleClass, "mb-1"]}>{title}</h2>}
     <div class="space-y-4">
       <slot />
     </div>

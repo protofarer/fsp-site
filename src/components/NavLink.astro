@@ -9,13 +9,11 @@ const { href, class: className = '' } = Astro.props;
 const baseStyles = `
   inline-block 
   px-4 py-2 
-  font-medium 
+  font-semibold tracking-wide text-center
+  text-fsp-dark
   transition-colors duration-200 
-  hover:text-emerald-300 hover:font-semibold
+  hover:text-fsp-green
 `;
-  // focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2
-  // text-emerald-400
-  //  hover:text-emerald-300
 
 const computedClass = [baseStyles, className];
 ---

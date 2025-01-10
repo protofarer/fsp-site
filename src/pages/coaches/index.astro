@@ -1,33 +1,28 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import Section from '../../components/Section.astro';
-import { Image } from 'astro:assets'
-import coachBaronImage from '../../assets/bio-baron.jpeg'
-import coachLocherImage from '../../assets/bio-locher.jpeg'
-import PageTitle from '../../components/PageTitle.astro'
+import { Image } from 'astro:assets';
+import coachBaronImage from '../../assets/bio-baron.jpeg';
+import coachLocherImage from '../../assets/bio-locher.jpeg';
+import PageTitle from '../../components/PageTitle.astro';
 import Card from '../../components/Card.astro';
-// TODO globalize or update for this page
-const classCard = 'p-4 md:p-6 rounded-lg bg-white shadow-sm';
-const classProgramTypography = 'space-y-4';
-const classProgramTitle = 'text-lg font-semibold text-gray-900 text-center';
-const classInnerList = 'space-y-2 list-disc pl-10';
-const classCoachName = 'text-xl text-gray-700 font-semibold text-center';
-const classSubname = 'text-gray-700 text-md';
+const classCoachName = 'text-xl font-semibold text-center';
+const classSubname = 'text-md';
 const classBodyText =
-  'text-md md:text-lg md:max-w-3xl px-4 text-gray-700 leading-relaxed space-y-4';
+  'text-md md:text-lg md:max-w-3xl px-4 leading-relaxed space-y-4';
 ---
 
 <BaseLayout>
-  <div class="flex flex-col items-center md:px-6 gap-8 mt-6">
+  <div class="flex flex-col items-center px-2 md:px-6 gap-5 md:gap-8 mt-6">
     <PageTitle>Coaches</PageTitle>
-    <Card id="baron">
-        <div class="flex justify-center items-center">
-          <Image
-            src={coachBaronImage}
-            alt="Photo of Coach Steven Baron"
-            height={256}
-          />
-          </div>
+    <Card id="baron" class="space-y-4">
+      <div class="flex justify-center items-center">
+        <Image
+          src={coachBaronImage}
+          alt="Photo of Coach Steven Baron"
+          height={256}
+          style={{ borderRadius: '5px' }}
+        />
+      </div>
       <div class="flex flex-col gap-1 items-center">
         <h2 class={classCoachName}>Steven Baron</h2>
         <p class={classSubname}>Co-Founder</p>
@@ -62,14 +57,15 @@ const classBodyText =
       </div>
     </Card>
 
-    <Card id="locher">
-        <div class="flex justify-center items-center">
-          <Image
-            src={coachLocherImage}
-            alt="Photo of Coach Jonny Locher"
-            width={256}
-          />
-          </div>
+    <Card id="locher" class="space-y-4">
+      <div class="flex justify-center items-center">
+        <Image
+          src={coachLocherImage}
+          alt="Photo of Coach Jonny Locher"
+          width={256}
+          style={{ borderRadius: '5px' }}
+        />
+      </div>
       <div class="flex flex-col gap-1 items-center">
         <h2 class={classCoachName}>Jonny Locher</h2>
         <p class={classSubname}>Co-Founder</p>

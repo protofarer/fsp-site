@@ -5,27 +5,20 @@ import CustomLink from '../components/CustomLink.astro';
 import IconPhone from '../components/IconPhone.astro';
 import IconEmail from '../components/IconEmail.astro';
 import LandingHero from '../components/LandingHero.astro';
-import SITE_MAP from '../constants/site-map';
-import { EMAIL, PHONE } from '../constants/info';
-import { formatPhoneNumber } from '../utils';
 import ButtonLink from '../components/ButtonLink.astro';
 import Card from '../components/Card.astro';
 import { Image } from 'astro:assets';
+import SITE_MAP from '../constants/site-map';
+import { EMAIL, PHONE } from '../constants/info';
+import { formatPhoneNumber } from '../utils';
 import coachLocherImage from '../assets/bio-locher-square.jpeg';
 import coachBaronImage from '../assets/bio-baron-square.jpeg';
 
-const classTextBase = 'text-gray-700 leading-relaxed text-base';
-const classCard =
-  'p-4 md:p-6 md:rounded-lg md:bg-white space-y-4 md:border md:border-solid md:border-gray-300 md:shadow-lg';
-const classProgramTypography = 'space-y-4' + ' ' + classTextBase;
-const classProgramTitle =
-  'text-lg md:text-xl font-bold text-gray-900 text-center';
-const classInnerList = 'space-y-2 list-disc pl-10';
-
+const classProgramTitle = 'text-lg md:text-xl font-bold text-center';
 const inputClasses =
-  'bg-white w-full px-3 py-2 border border-b-4 border-gray-200 focus:border-blue-500 transition-colors duration-200 outline-none placeholder:text-gray-400 text-gray-700';
+  'bg-white w-full px-3 py-2 border border-b-4 border-slate-200 focus:border-blue-500 transition-colors duration-200 outline-none placeholder:text-gray-400 text-slate-700';
 const classTextArea = 'min-h-[120px] resize-y';
-const labelClasses = 'text-base text-gray-800 font-bold';
+const labelClasses = 'text-slate-700 font-bold';
 ---
 
 <BaseLayout>
@@ -34,7 +27,7 @@ const labelClasses = 'text-base text-gray-800 font-bold';
     <div class:list={['py-6 md:py-8']}>
       <div class="flex justify-center">
         <div
-          class="px-4 space-y-6 md:space-y-10 text-lg md:text-xl md:max-w-4xl text-gray-700 leading-relaxed text-center"
+          class="px-4 space-y-6 md:space-y-10 text-lg md:text-xl md:max-w-4xl text-slate-700 leading-relaxed text-center"
         >
           <p>At the heart of Frontier Sports Performance is a simple truth:</p>
           <p class="italic">
@@ -51,59 +44,67 @@ const labelClasses = 'text-base text-gray-800 font-bold';
   </Section>
   <Section id="services" title="Services">
     <ul
-      class="grid md:grid-cols-2 xl:grid-cols-3 gap-8 md:gap-12 p-4 md:p-6 text-center"
+      class="grid md:grid-cols-2 xl:grid-cols-3 gap-8 md:gap-12 py-4 px-2 md:p-6 text-center"
     >
-      <li class='flex'>
-       <!-- flex to allow cards to expand to full height} -->
+      <li class="flex">
+        <!-- flex to allow cards to expand to full height} -->
         <Card>
-          <h3 class={classProgramTitle}>Hitting</h3>
-          <p>
-            Take your hitting to the next level with progressive, 1-hour
-            personalized hitting sessions.
-          </p>
-          <div class="flex justify-center items-center">
-            <ButtonLink href={SITE_MAP.serviceHitting}>Learn More</ButtonLink>
+          <div class="flex flex-col justify-between h-full space-y-4">
+            <h3 class={classProgramTitle}>Hitting</h3>
+            <p>
+              Take your hitting to the next level with progressive, 1-hour
+              personalized hitting sessions.
+            </p>
+            <div class="flex justify-center items-center">
+              <ButtonLink href={SITE_MAP.serviceHitting}>Learn More</ButtonLink>
+            </div>
           </div>
         </Card>
       </li>
-      <li class='flex'> 
-       <!-- flex to allow cards to expand to full height} -->
+      <li class="flex">
+        <!-- flex to allow cards to expand to full height} -->
         <Card>
-          <h3 class={classProgramTitle}>Catching</h3>
-          <p>
-            Elevate your game behind the plate with 1-hour customized catching
-            sessions focused on the three core skills:
-          </p>
-          <div class="flex justify-center items-center">
-            <ButtonLink href={SITE_MAP.serviceCatching}>Learn More</ButtonLink>
+          <div class="flex flex-col justify-between h-full space-y-4">
+            <h3 class={classProgramTitle}>Catching</h3>
+            <p>
+              Elevate your game behind the plate with 1-hour customized catching
+              sessions focused on the three core skills:
+            </p>
+            <div class="flex justify-center items-center">
+              <ButtonLink href={SITE_MAP.serviceCatching}>Learn More</ButtonLink
+              >
+            </div>
           </div>
         </Card>
       </li>
-      <li class='flex'>
-       <!-- flex to allow cards to expand to full height} -->
+      <li class="flex">
+        <!-- flex to allow cards to expand to full height} -->
         <Card>
-          <h3 class={classProgramTitle}>Pitching</h3>
-          <p>
-            Take your pitching to the next level with progressive, 1-hour
-            personalized pitching sessions
-          </p>
-          <div class="flex justify-center items-center">
-            <ButtonLink href={SITE_MAP.servicePitching}>Learn More</ButtonLink>
+          <div class="flex flex-col justify-between h-full space-y-4">
+            <h3 class={classProgramTitle}>Pitching</h3>
+            <p>
+              Take your pitching to the next level with progressive, 1-hour
+              personalized pitching sessions
+            </p>
+            <div class="flex justify-center items-center">
+              <ButtonLink href={SITE_MAP.servicePitching}>Learn More</ButtonLink
+              >
+            </div>
           </div>
         </Card>
       </li>
     </ul>
   </Section>
   <Section id="coaches" title="Coaches" background="light">
-    <div class="grid grid-cols-1 md:grid-cols-2 p-4 md:p-6 gap-8">
-      <Card variant="dark">
+    <div class="grid grid-cols-1 md:grid-cols-2 py-4 px-2 md:p-6 gap-8">
+      <Card variant="dark" class="space-y-4">
         <div class="flex justify-center items-center">
           <Image
             src={coachBaronImage}
             alt="Photo of Coach Steven Baron"
             height={192}
             width={192}
-            style={{ borderRadius: '50%', border: '3px solid white'}}
+            style={{ borderRadius: '50%', border: '3px solid white' }}
             class="hidden md:block"
           />
           <Image
@@ -111,14 +112,14 @@ const labelClasses = 'text-base text-gray-800 font-bold';
             alt="Photo of Coach Steven Baron"
             height={128}
             width={128}
-            style={{ borderRadius: '50%', border: '3px solid white'}}
+            style={{ borderRadius: '50%', border: '3px solid white' }}
             class="md:hidden"
           />
         </div>
         <h2 class="text-xl font-semibold text-center text-white">
           Steven Baron
         </h2>
-        <p class:list={[classTextBase, 'text-white']}>
+        <p class="leading-relaxed text-white">
           Former professional baseball catcher with a 12-year career in the MLB
           and MiLB. Selected by the Seattle Mariners with the 33rd overall pick
           in the 2009 MLB Draft. He made his MLB debut with the Mariners in
@@ -128,19 +129,19 @@ const labelClasses = 'text-base text-gray-800 font-bold';
         <div>
           <CustomLink
             href={SITE_MAP.coachBaron}
-            class="text-blue-600 hover:text-blue-800 hover:underline"
+            class="text-blue-300 hover:text-blue-500 hover:underline"
             >Read More</CustomLink
           >
         </div>
       </Card>
-      <Card variant="dark">
+      <Card variant="dark" class="space-y-4">
         <div class="flex justify-center items-center">
           <Image
             src={coachLocherImage}
             alt="Photo of Coach Jonny Locher"
             height={192}
             width={192}
-            style={{ borderRadius: '50%', border: '3px solid white'}}
+            style={{ borderRadius: '50%', border: '3px solid white' }}
             class="hidden md:block"
           />
           <Image
@@ -148,14 +149,14 @@ const labelClasses = 'text-base text-gray-800 font-bold';
             alt="Photo of Coach Jonny Locher"
             height={128}
             width={128}
-            style={{ borderRadius: '50%', border: '3px solid white'}}
+            style={{ borderRadius: '50%', border: '3px solid white' }}
             class="md:hidden"
           />
         </div>
         <h2 class="text-xl font-semibold text-center text-white">
           Jonny Locher
         </h2>
-        <p class:list={[classTextBase, 'text-white']}>
+        <p class="leading-relaxed text-white">
           Coached at youth, High School and Divison 1 college levels. He is the
           head coach at Highline HS, and won the league championship during his
           first season. Jonny has also coached the Anchorage Glacier Pilots in
@@ -164,7 +165,7 @@ const labelClasses = 'text-base text-gray-800 font-bold';
         <div>
           <CustomLink
             href={SITE_MAP.coachLocher}
-            class="text-blue-600 hover:text-blue-800 hover:underline"
+            class="text-blue-300 hover:text-blue-500 hover:underline"
             >Read More</CustomLink
           >
         </div>
@@ -173,7 +174,7 @@ const labelClasses = 'text-base text-gray-800 font-bold';
   </Section>
   <Section id="contact" title="Contact" spacing="lg">
     <div class="px-4 space-y-4">
-      <p class="text-center text-base">
+      <p class="text-center mt-3">
         Get in touch and we will reach out to you as soon as possible.
       </p>
       <div class="flex justify-center">
@@ -232,7 +233,7 @@ const labelClasses = 'text-base text-gray-800 font-bold';
           </div>
           <button
             type="submit"
-            class="w-full px-6 py-3 bg-slate-800 text-white rounded-lg hover:bg-gray-800 transition-colors duration-200"
+            class="w-full px-6 py-3 bg-slate-800 text-white rounded-lg hover:bg-slate-800 transition-colors duration-200"
           >
             Send Message
           </button>

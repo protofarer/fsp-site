@@ -7,22 +7,17 @@ interface Props {
 
 const { class: className = '', variant = 'light', id } = Astro.props;
 
-const classCard = 'p-4 md:p-6 rounded-lg space-y-4 shadow-md md:shadow-lg';
+const classCard = 'px-3 py-4 md:p-6 rounded-lg shadow-md md:shadow-lg';
 let classTypography = ''
 let colorBackground = '';
 let classBorder = '';
 
 if (variant === 'dark') {
-  colorBackground = 'bg-gray-800';
+  colorBackground = 'bg-slate-800';
   classBorder = 'border-2 border-solid border-black';
-  // TODO: needs to be overridable by the slot classes
-  // classTypography ='text-white'
-  // classTypography = '[&_*]:text-white'
 } else if (variant === 'light') {
   colorBackground = 'bg-white';
   classBorder = 'md:border md:border-solid md:border-gray-200';
-  // classTypography ='text-black'
-  // classTypography = '[&_*]:text-black'
 }
 
 const computedClass = [
