@@ -1,10 +1,17 @@
 ---
+
+import { getCollection, type CollectionEntry } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { Image } from 'astro:assets';
 import coachBaronImage from '../../assets/bio-baron.jpeg';
 import coachLocherImage from '../../assets/bio-locher.jpeg';
 import PageTitle from '../../components/PageTitle.astro';
 import Card from '../../components/Card.astro';
+import CoachCard from './_CoachCard.astro';
+
+type Coach = CollectionEntry<'coaches'>
+const allCoaches = await getCollection('coaches');
+
 const classCoachName = 'text-xl font-semibold text-center';
 const classSubname = 'text-md';
 const classBodyText =
@@ -14,90 +21,90 @@ const classBodyText =
 <BaseLayout>
   <div class="flex flex-col items-center px-2 md:px-6 gap-5 md:gap-8 mt-6">
     <PageTitle>Coaches</PageTitle>
-    <Card id="baron" class="space-y-4">
-      <div class="flex justify-center items-center">
-        <Image
-          src={coachBaronImage}
-          alt="Photo of Coach Steven Baron"
-          height={256}
-          style={{ borderRadius: '5px' }}
-        />
-      </div>
-      <div class="flex flex-col gap-1 items-center">
-        <h2 class={classCoachName}>Steven Baron</h2>
-        <p class={classSubname}>Co-Founder</p>
-      </div>
-      <div class={classBodyText}>
-        <p>
-          Steven Baron is a former professional baseball catcher with a 12-year
-          career in the MLB and MiLB. A standout at John A. Ferguson Senior High
-          School in Miami, Florida, he earned recognition as the Miami-Dade 6A
-          Player of the Year, First-Team All-Dade, and the best defensive
-          catcher in the 2009 MLB Draft class. That year, he also received the
-          prestigious Rawlings Gold Glove Award and was ranked #77 on Baseball
-          America’s Top 100 Draft Prospects list.
-        </p>
-        <p>
-          Baron signed to play baseball at Duke University but instead was
-          selected by the Seattle Mariners with the 33rd overall pick in the
-          2009 MLB Draft. Baron made his MLB debut with the Mariners in 2015. He
-          also played for the St. Louis Cardinals in 2018 and the Pittsburgh
-          Pirates in 2019. Throughout his career, Baron was known for his
-          exceptional game management, leadership, and defensive skills behind
-          the plate.
-        </p>
-        <p>
-          After retiring from professional baseball, Baron transitioned into
-          coaching, leveraging his extensive experience as a catcher to mentor
-          and develop aspiring players. Baron specializes in hitting, catching,
-          pitching, and strength/agility training, aiming to impart the
-          knowledge and skills acquired during his professional career to the
-          next generation of athletes.
-        </p>
-      </div>
-    </Card>
-
-    <Card id="locher" class="space-y-4">
-      <div class="flex justify-center items-center">
-        <Image
-          src={coachLocherImage}
-          alt="Photo of Coach Jonny Locher"
-          width={256}
-          style={{ borderRadius: '5px' }}
-        />
-      </div>
-      <div class="flex flex-col gap-1 items-center">
-        <h2 class={classCoachName}>Jonny Locher</h2>
-        <p class={classSubname}>Co-Founder</p>
-      </div>
-      <div class={classBodyText}>
-        <p>
-          Jonny Locher, a Seattle native, attended Highline HS where he was an
-          All-American and 3 times first team All-State Center fielder. Jonny
-          was also a nationally-competitive track athlete, and placed 4th place
-          in the Long Jump at AAU national championships as an 8th grader. He
-          successfully ran the 100m and 200m, and his background in track has
-          developed his experience in Speed and Strength development.
-        </p>
-        <p>
-          Jonny earned a scholarship to play baseball at Stanford, where he was
-          a 4 year outfielder and graduated with a degree in Economics.
-        </p>
-        <p>
-          Jonny has successfully coached at youth, High School and Divison 1
-          college levels. He is the head coach at Highline HS, and won the
-          league championship during his first season. Jonny has also coached
-          the Anchorage Glacier Pilots in the Alaska Baseball League, a Division
-          1 college summer league. At the youth levels, Jonny coached Seattle
-          Select 11u/12u program, competing in multiple national tournaments and
-          achieving a top-10 national ranking by Perfect Game.
-        </p>
-        <p>
-          Jonny specializes in working with outfielders, hitters and base
-          running. He also trains athletes in speed and strength training,
-          helping players become faster, stronger, and more powerful.
-        </p>
-      </div>
-    </Card>
+    {allCoaches.map((coach: Coach) => <CoachCard coach={coach} />)}
+    <!-- <Card id="baron" class="space-y-4"> -->
+    <!--   <div class="flex justify-center items-center"> -->
+    <!--     <Image -->
+    <!--       src={coachBaronImage} -->
+    <!--       alt="Photo of Coach Steven Baron" -->
+    <!--       height={256} -->
+    <!--       style={{ borderRadius: '5px' }} -->
+    <!--     /> -->
+    <!--   </div> -->
+    <!--   <div class="flex flex-col gap-1 items-center"> -->
+    <!--     <h2 class={classCoachName}>Steven Baron</h2> -->
+    <!--     <p class={classSubname}>Co-Founder</p> -->
+    <!--   </div> -->
+    <!--   <div class={classBodyText}> -->
+    <!--     <p> -->
+    <!--       Steven Baron is a former professional baseball catcher with a 12-year -->
+    <!--       career in the MLB and MiLB. A standout at John A. Ferguson Senior High -->
+    <!--       School in Miami, Florida, he earned recognition as the Miami-Dade 6A -->
+    <!--       Player of the Year, First-Team All-Dade, and the best defensive -->
+    <!--       catcher in the 2009 MLB Draft class. That year, he also received the -->
+    <!--       prestigious Rawlings Gold Glove Award and was ranked #77 on Baseball -->
+    <!--       America’s Top 100 Draft Prospects list. -->
+    <!--     </p> -->
+    <!--     <p> -->
+    <!--       Baron signed to play baseball at Duke University but instead was -->
+    <!--       selected by the Seattle Mariners with the 33rd overall pick in the -->
+    <!--       2009 MLB Draft. Baron made his MLB debut with the Mariners in 2015. He -->
+    <!--       also played for the St. Louis Cardinals in 2018 and the Pittsburgh -->
+    <!--       Pirates in 2019. Throughout his career, Baron was known for his -->
+    <!--       exceptional game management, leadership, and defensive skills behind -->
+    <!--       the plate. -->
+    <!--     </p> -->
+    <!--     <p> -->
+    <!--       After retiring from professional baseball, Baron transitioned into -->
+    <!--       coaching, leveraging his extensive experience as a catcher to mentor -->
+    <!--       and develop aspiring players. Baron specializes in hitting, catching, -->
+    <!--       pitching, and strength/agility training, aiming to impart the -->
+    <!--       knowledge and skills acquired during his professional career to the -->
+    <!--       next generation of athletes. -->
+    <!--     </p> -->
+    <!--   </div> -->
+    <!-- </Card> -->
+    <!-- <Card id="locher" class="space-y-4"> -->
+    <!--   <div class="flex justify-center items-center"> -->
+    <!--     <Image -->
+    <!--       src={coachLocherImage} -->
+    <!--       alt="Photo of Coach Jonny Locher" -->
+    <!--       width={256} -->
+    <!--       style={{ borderRadius: '5px' }} -->
+    <!--     /> -->
+    <!--   </div> -->
+    <!--   <div class="flex flex-col gap-1 items-center"> -->
+    <!--     <h2 class={classCoachName}>Jonny Locher</h2> -->
+    <!--     <p class={classSubname}>Co-Founder</p> -->
+    <!--   </div> -->
+    <!--   <div class={classBodyText}> -->
+    <!--     <p> -->
+    <!--       Jonny Locher, a Seattle native, attended Highline HS where he was an -->
+    <!--       All-American and 3 times first team All-State Center fielder. Jonny -->
+    <!--       was also a nationally-competitive track athlete, and placed 4th place -->
+    <!--       in the Long Jump at AAU national championships as an 8th grader. He -->
+    <!--       successfully ran the 100m and 200m, and his background in track has -->
+    <!--       developed his experience in Speed and Strength development. -->
+    <!--     </p> -->
+    <!--     <p> -->
+    <!--       Jonny earned a scholarship to play baseball at Stanford, where he was -->
+    <!--       a 4 year outfielder and graduated with a degree in Economics. -->
+    <!--     </p> -->
+    <!--     <p> -->
+    <!--       Jonny has successfully coached at youth, High School and Divison 1 -->
+    <!--       college levels. He is the head coach at Highline HS, and won the -->
+    <!--       league championship during his first season. Jonny has also coached -->
+    <!--       the Anchorage Glacier Pilots in the Alaska Baseball League, a Division -->
+    <!--       1 college summer league. At the youth levels, Jonny coached Seattle -->
+    <!--       Select 11u/12u program, competing in multiple national tournaments and -->
+    <!--       achieving a top-10 national ranking by Perfect Game. -->
+    <!--     </p> -->
+    <!--     <p> -->
+    <!--       Jonny specializes in working with outfielders, hitters and base -->
+    <!--       running. He also trains athletes in speed and strength training, -->
+    <!--       helping players become faster, stronger, and more powerful. -->
+    <!--     </p> -->
+    <!--   </div> -->
+    <!-- </Card> -->
   </div>
 </BaseLayout>

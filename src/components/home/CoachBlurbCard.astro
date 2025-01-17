@@ -1,0 +1,55 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { slugify } from '../../utils';
+import { Image } from 'astro:assets';
+import Card from '../Card.astro';
+import CustomLink from '../CustomLink.astro';
+import SITE_MAP from '../../constants/site-map';
+
+interface Props {
+  coach: CollectionEntry<'coaches'>;
+}
+
+const { coach } = Astro.props;
+
+const maxFullSide = 192;
+const maxCompactSide = 128;
+---
+
+<Card variant="dark" class="space-y-4">
+  {
+    coach.data.coachBlurbImage && (
+      <div class="flex justify-center items-center">
+        <Image
+          src={coach.data.coachBlurbImage}
+          alt={`Photo of Coach ${coach.data.coachName}`}
+          height={maxFullSide}
+          width={maxFullSide}
+          style={{ borderRadius: '50%', border: '3px solid white' }}
+          class="hidden md:block"
+        />
+        <Image
+          src={coach.data.coachBlurbImage}
+          alt={`Photo of Coach ${coach.data.coachName}`}
+          height={maxCompactSide}
+          width={maxCompactSide}
+          style={{ borderRadius: '50%', border: '3px solid white' }}
+          class="md:hidden"
+        />
+      </div>
+    )
+  }
+  <h2 class="text-xl font-semibold text-center text-white">
+    {coach.data.coachName}
+  </h2>
+  <p class="leading-relaxed text-white">
+    {coach.data.blurb}
+  </p>
+  <div>
+    <CustomLink
+      href={`${SITE_MAP.coaches}#${slugify(coach.data.coachName)}`}
+      class="text-blue-300 hover:text-blue-500 hover:underline"
+      >Read More</CustomLink
+    >
+  </div>
+</Card>

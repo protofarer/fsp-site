@@ -1,0 +1,50 @@
+local_backend: true
+media_folder: /src/assets/img
+public_folder: /src/assets/img
+backend:
+  name: git-gateway
+  repo: protofarer/fsp-site
+collections:
+  - label: "Services"
+    name: "services"
+    folder: "src/content/services"
+    create: true
+    fields:
+    - { label: "Title", 
+      name: "title", widget: "string", description: "Title for the services card" }
+    - { label: "SubTitle", name: "subtitle", widget: "string", descrhption: "Optional subtitle", required: false }
+    # - { label: "Title Image", name: "titleImage", widget: "image", description: "Optional title image", required: false }
+    - { label: "Body", name: "body", widget: "markdown", description: "Description of the service" }
+    - { label: "Landing Page Blurb", name: "blurb", widget: "markdown", required: false }
+  - label: "Coach Bios"
+    name: "coachBios"
+    folder: "src/content/coaches"
+    create: true
+    fields: # The fields for each document, usually in frontmatter
+      - { label: "Coach Name", name: "coachName", widget: "string" }
+      - { label: "Position", name: "position", widget: "string" }
+      - { label: "Body", name: "body", widget: "markdown" }
+      - { label: "Coach Image", name: "coachImage", widget: "image", required: false }
+      - { label: "Landing Page Blurb", name: "blurb", widget: "markdown", required: false }
+      - { label: "Coach Blurb Image", name: "coachBlurbImage", widget: "image", description: "Must be a square crop image", required: false }
+  # - name: "pages"
+  #   label: "Pages" # Used in the UI
+  #   files:
+  #     - name: "home"
+  #       label: "Home"
+  #       file: "src/content/home.yml" # The path to the folder where the documents are stored
+  #       fields: # The fields for each document, usually in frontmatter
+  #         - { label: "Hero 0ne Liner", name: "hero one liner", widget: "string" }
+  #         - { label: "Hero Company Name", name: "hero company name", widget: "string" }
+  #         - { label: "Mission", name: "mission", widget: "markdown" }
+  #     - name: "coach home intro"
+  #       file: "src/content/coach-home-intro.yml" # The path to the folder where the documents are stored
+  #       label: "Coach Home Intro"
+  #       create: true
+  #       fields: # The fields for each document, usually in frontmatter
+  #         - { label: "Coach Name 1", name: "coach name 1", widget: "string" }
+  #         - { label: "Coach Intro 1", name: "coach intro 1", widget: "string" }
+  #         - { label: "Coach Photo 1", name: "coach photo 1", widget: "image" }
+  #         # - { label: "Coach Name 2", name: "coach name 2", widget: "string" }
+  #         # - { label: "Coach Intro 2", name: "coach intro 2", widget: "string" }
+  #         # - { label: "Coach Photo 2", name: "coach photo 2", widget: "image" }

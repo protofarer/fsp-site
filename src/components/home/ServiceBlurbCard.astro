@@ -1,0 +1,26 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import Card from '../Card.astro';
+import ButtonLink from '../ButtonLink.astro';
+import { slugify } from '../../utils'
+import SITE_MAP from '../../constants/site-map';
+
+interface Props {
+  service: CollectionEntry<'services'>;
+}
+const { service } = Astro.props;
+const classProgramTitle = 'text-lg md:text-xl font-bold text-center';
+---
+
+<Card>
+  <div class="flex flex-col justify-between h-full space-y-4">
+    <h3 class={classProgramTitle}>{service.data.title}</h3>
+    <p>
+      {service.data.blurb}
+    </p>
+    <div class="flex justify-center items-center">
+      <ButtonLink href={`${SITE_MAP.services}#${slugify(service.data.title)}`}>Learn More</ButtonLink
+      >
+    </div>
+  </div>
+</Card>

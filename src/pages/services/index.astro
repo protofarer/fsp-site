@@ -1,125 +1,30 @@
 ---
+import { getCollection, type CollectionEntry } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import Card from '../../components/Card.astro';
 import PageTitle from '../../components/PageTitle.astro';
-import SITE_MAP from '../../constants/site-map';
 import ButtonLink from '../../components/ButtonLink.astro';
+import ServiceCard from './_ServiceCard.astro';
+import SITE_MAP from '../../constants/site-map';
 
-const classTextBase = 'leading-relaxed';
-const classProgramTypography = 'space-y-4' + ' ' + classTextBase;
-const classProgramTitle = 'text-lg font-semibold text-center';
-const classInnerList = 'space-y-2 list-disc pl-10';
+type Service = CollectionEntry<'services'>
+const allServices = await getCollection('services');
 ---
 
 <BaseLayout>
   <div class="flex flex-col items-center px-2 md:px-6 gap-5 md:gap-8 mt-6">
     <div class="space-y-1 md:space-y-3">
-      <PageTitle>
-      Services
-      </PageTitle>
+      <PageTitle> Services </PageTitle>
       <p class="text-md md:text-xl text-slate-600 text-center">
-      Elevate Your Game with Professional, Personalized Training
+        Elevate Your Game with Professional, Personalized Training
       </p>
-      <div class='flex justify-center pt-3'>
+      <div class="flex justify-center pt-3">
         <ButtonLink href={SITE_MAP.contact}>Contact Us</ButtonLink>
       </div>
     </div>
-    <Card id="#hitting">
-      <h2 class:list={[classProgramTitle]}>Hitting</h2>
-      <div class:list={[classProgramTypography, 'max-w-3xl']}>
-        <h2 class="text-center italic text-lg text-slate-600">
-          Unleash Your Hitting Potential
-        </h2>
-        <p class="mb-2">
-          Take your offensive performance to new heights with our focused,
-          1-hour progressive hitting sessions tailored to help you dominate at
-          the plate.
-        </p>
-        <div>
-          <p class="mb-2">Each session includes:</p>
-          <ul class={classInnerList}>
-            <li>
-              Tee Work with Expert Feedback: Build a foundation of solid
-              mechanics through dialogue and drills.
-            </li>
-            <li>
-              Front Toss & Seated Toss: Develop precision and consistency by
-              mastering key contact points.
-            </li>
-            <li>
-              Live Hitting: Simulate game conditions to sharpen timing,
-              approach, and execution.
-            </li>
-          </ul>
-        </div>
-        <p>
-          Benefits: Enhance your power, precision, and confidence, turning every
-          at-bat into an opportunity to succeed.
-        </p>
-      </div>
-    </Card>
-    <Card id="catching">
-      <h2 class:list={[classProgramTitle]}>Catching</h2>
-      <div class:list={[classProgramTypography, 'max-w-3xl']}>
-        <h3 class="text-center italic text-lg text-slate-600">
-          Master the Art of Catching
-        </h3>
-        <p class="mb-2">
-          Elevate your skills behind the plate with our customized 1-hour
-          catching sessions designed for elite performance.
-        </p>
-        <ul class={classInnerList}>
-          <li>
-            Receiving: Develop soft, quiet hands with receiving drills to catch
-            strikes for your pitcher.
-          </li>
-          <li>
-            Blocking: Build agility and toughness with blocking drills to keep
-            runners in check.
-          </li>
-          <li>
-            Throwing: Improve your arm strength, footwork, and accuracy to
-            control the base paths.
-          </li>
-        </ul>
-        <p>
-          Benefits: Lead your team with confidence, command the game from behind
-          the plate, and become an indispensable asset to your pitcher.
-        </p>
-      </div>
-    </Card>
-    <Card id="pitching">
-      <h2 class:list={[classProgramTitle]}>Pitching</h2>
-      <div class:list={[classProgramTypography, 'max-w-3xl']}>
-        <h3 class="text-center italic text-lg text-slate-600">
-          Command the Mound Like a Pro
-        </h3>
-        <p class="mb-2">
-          Dominate every inning with our 1-hour pitching sessions focused on
-          mechanics, control, and mental strength.
-        </p>
-        <div>
-          <ul class={classInnerList}>
-            <li>
-              Each session is designed to build your skills step by step,
-              focusing on mechanics, control, and power:
-            </li>
-
-            <li>
-              Throwing Progressions: Boost arm strength, accuracy, and
-              consistency with intentional throwing.
-            </li>
-            <li>
-              Bullpen: Game-like bullpen to hone your command and pitch
-              selection.
-            </li>
-          </ul>
-        </div>
-        <p>
-          Benefits: Develop power, precision, and composure to lead your team
-          from the mound.
-        </p>
-      </div>
-    </Card>
+      {
+        allServices.map((service: Service) => (
+          <ServiceCard service={service} />
+        ))
+      }
   </div>
 </BaseLayout>

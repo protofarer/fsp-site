@@ -1,0 +1,41 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { render } from 'astro:content'
+import { slugify } from '../../utils'
+import Card from '../../components/Card.astro';
+import Prose from '../../components/Prose.astro';
+
+interface Props {
+  service: CollectionEntry<'services'>;
+}
+
+const { service } = Astro.props;
+
+const classTextBase = 'leading-relaxed';
+const classProgramTypography = 'space-y-4' + ' ' + classTextBase;
+const classProgramTitle = 'text-lg font-semibold text-center';
+
+const { Content } = await render(service)
+---
+
+<Card id={slugify(service.data.title)}>
+  <h2 class:list={[classProgramTitle]}>{service.data.title}</h2>
+  <div class:list={[classProgramTypography, 'max-w-3xl']}>
+    {
+      service.data.subtitle && (
+        <h2 class="text-center italic text-lg text-slate-600">
+          {service.data.subtitle}
+        </h2>
+      )
+    }
+    <Prose>
+      <Content />
+    </Prose>
+  </div>
+</Card>
+
+<style>
+  li {
+    list-style: disc;
+  }
+</style>

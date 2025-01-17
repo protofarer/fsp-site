@@ -1,18 +1,21 @@
 ---
+import { getCollection, type CollectionEntry } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Section from '../components/Section.astro';
 import CustomLink from '../components/CustomLink.astro';
 import IconPhone from '../components/IconPhone.astro';
 import IconEmail from '../components/IconEmail.astro';
 import LandingHero from '../components/LandingHero.astro';
-import ButtonLink from '../components/ButtonLink.astro';
-import Card from '../components/Card.astro';
-import { Image } from 'astro:assets';
-import SITE_MAP from '../constants/site-map';
-import { EMAIL, PHONE } from '../constants/info';
+import ServiceBlurbCard from '../components/home/ServiceBlurbCard.astro'
+import CoachBlurbCard from '../components/home/CoachBlurbCard.astro'
 import { formatPhoneNumber } from '../utils';
-import coachLocherImage from '../assets/bio-locher-square.jpeg';
-import coachBaronImage from '../assets/bio-baron-square.jpeg';
+import { EMAIL, PHONE } from '../constants/info';
+
+type Service = CollectionEntry<'services'>
+const allServices = await getCollection('services');
+
+type Coach = CollectionEntry<'coaches'>
+const allCoaches = await getCollection('coaches');
 
 const classProgramTitle = 'text-lg md:text-xl font-bold text-center';
 const inputClasses =
@@ -46,130 +49,18 @@ const labelClasses = 'text-slate-700 font-bold';
     <ul
       class="grid md:grid-cols-2 xl:grid-cols-3 gap-8 md:gap-12 py-4 px-2 md:p-6 text-center"
     >
+    {allServices.map((service: Service) => (
       <li class="flex">
-        <!-- flex to allow cards to expand to full height} -->
-        <Card>
-          <div class="flex flex-col justify-between h-full space-y-4">
-            <h3 class={classProgramTitle}>Hitting</h3>
-            <p>
-              Take your hitting to the next level with progressive, 1-hour
-              personalized hitting sessions.
-            </p>
-            <div class="flex justify-center items-center">
-              <ButtonLink href={SITE_MAP.serviceHitting}>Learn More</ButtonLink>
-            </div>
-          </div>
-        </Card>
+        <ServiceBlurbCard service={service} />
       </li>
-      <li class="flex">
-        <!-- flex to allow cards to expand to full height} -->
-        <Card>
-          <div class="flex flex-col justify-between h-full space-y-4">
-            <h3 class={classProgramTitle}>Catching</h3>
-            <p>
-              Elevate your game behind the plate with 1-hour customized catching
-              sessions focused on the three core skills:
-            </p>
-            <div class="flex justify-center items-center">
-              <ButtonLink href={SITE_MAP.serviceCatching}>Learn More</ButtonLink
-              >
-            </div>
-          </div>
-        </Card>
-      </li>
-      <li class="flex">
-        <!-- flex to allow cards to expand to full height} -->
-        <Card>
-          <div class="flex flex-col justify-between h-full space-y-4">
-            <h3 class={classProgramTitle}>Pitching</h3>
-            <p>
-              Take your pitching to the next level with progressive, 1-hour
-              personalized pitching sessions
-            </p>
-            <div class="flex justify-center items-center">
-              <ButtonLink href={SITE_MAP.servicePitching}>Learn More</ButtonLink
-              >
-            </div>
-          </div>
-        </Card>
-      </li>
+    ))}
     </ul>
   </Section>
   <Section id="coaches" title="Coaches" background="light">
     <div class="grid grid-cols-1 md:grid-cols-2 py-4 px-2 md:p-6 gap-8">
-      <Card variant="dark" class="space-y-4">
-        <div class="flex justify-center items-center">
-          <Image
-            src={coachBaronImage}
-            alt="Photo of Coach Steven Baron"
-            height={192}
-            width={192}
-            style={{ borderRadius: '50%', border: '3px solid white' }}
-            class="hidden md:block"
-          />
-          <Image
-            src={coachBaronImage}
-            alt="Photo of Coach Steven Baron"
-            height={128}
-            width={128}
-            style={{ borderRadius: '50%', border: '3px solid white' }}
-            class="md:hidden"
-          />
-        </div>
-        <h2 class="text-xl font-semibold text-center text-white">
-          Steven Baron
-        </h2>
-        <p class="leading-relaxed text-white">
-          Former professional baseball catcher with a 12-year career in the MLB
-          and MiLB. Selected by the Seattle Mariners with the 33rd overall pick
-          in the 2009 MLB Draft. He made his MLB debut with the Mariners in
-          2015. He also played for the St. Louis Cardinals in 2018 and the
-          Pittsburgh Pirates in 2019.
-        </p>
-        <div>
-          <CustomLink
-            href={SITE_MAP.coachBaron}
-            class="text-blue-300 hover:text-blue-500 hover:underline"
-            >Read More</CustomLink
-          >
-        </div>
-      </Card>
-      <Card variant="dark" class="space-y-4">
-        <div class="flex justify-center items-center">
-          <Image
-            src={coachLocherImage}
-            alt="Photo of Coach Jonny Locher"
-            height={192}
-            width={192}
-            style={{ borderRadius: '50%', border: '3px solid white' }}
-            class="hidden md:block"
-          />
-          <Image
-            src={coachLocherImage}
-            alt="Photo of Coach Jonny Locher"
-            height={128}
-            width={128}
-            style={{ borderRadius: '50%', border: '3px solid white' }}
-            class="md:hidden"
-          />
-        </div>
-        <h2 class="text-xl font-semibold text-center text-white">
-          Jonny Locher
-        </h2>
-        <p class="leading-relaxed text-white">
-          Coached at youth, High School and Divison 1 college levels. He is the
-          head coach at Highline HS, and won the league championship during his
-          first season. Jonny has also coached the Anchorage Glacier Pilots in
-          the Alaska Baseball League, a Division 1 college summer league.
-        </p>
-        <div>
-          <CustomLink
-            href={SITE_MAP.coachLocher}
-            class="text-blue-300 hover:text-blue-500 hover:underline"
-            >Read More</CustomLink
-          >
-        </div>
-      </Card>
+    {allCoaches.map((coach: Coach) => (
+        <CoachBlurbCard coach={coach} />
+    ))}
     </div>
   </Section>
   <Section id="contact" title="Contact" spacing="lg">
