@@ -3,9 +3,12 @@ import SITE_MAP from '../constants/site-map.ts';
 import ButtonLink from '../components/ButtonLink.astro';
 import heroImage from '../assets/baseball-field-mountains.jpg';
 import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
+
+const allHome = await getCollection('home')
+const home = allHome[0]
 ---
 
-<!-- <div class="bg-gray-800 space-y-12 py-8 md:py-12 flex flex-col items-center"> -->
 <div class="relative w-full h-[50vh] overflow-hidden p-4">
   <div class="absolute inset-0">
     <Image
@@ -22,15 +25,15 @@ import { Image } from 'astro:assets';
     <div
       class="text-lg md:text-2xl tracking-wider text-center text-white font-bold italic"
     >
-      FRONTIER SPORTS PERFORMANCE
+    {home.data.title}
     </div>
     <h1
       class="text-xl md:text-3xl md:max-w-3xl tracking-wide font-bold text-center text-white"
     >
-      UNLOCK YOUR POTENTIAL IN STRENGTH AND ATHLETICS
+      {home.data.heroMiddleLine}
     </h1>
     <div
-      class="w-full pt-6 md:pt-10 flex gap-6 md:gap-10 flex-nowrap justify-center items-center"
+      class="w-full pt-2 md:pt-6 flex gap-6 md:gap-10 flex-nowrap justify-center items-center"
     >
       <ButtonLink
         href={SITE_MAP.services}

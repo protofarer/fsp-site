@@ -1,4 +1,8 @@
-export const formatPhoneNumber = (str: string) => {
+export const stripPhoneNumber = (str: string) => {
+  return str.replace(/\D/g, '');
+};
+
+export const displayPhoneNumber = (str: string) => {
   // Remove all non-digits
   const cleaned = str.replace(/\D/g, '');
   // Format as (XXX) XXX-XXXX

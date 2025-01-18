@@ -18,7 +18,7 @@ const coaches = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/coaches' }),
   schema: ({ image }) =>
     z.object({
-      coachName: z.string(),
+      title: z.string(),
       position: z.string(),
       coachImage: image().optional(),
       blurb: z.string().optional(),
@@ -26,4 +26,12 @@ const coaches = defineCollection({
     }),
 });
 
-export const collections = { services, coaches };
+const home = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/home' }),
+  schema: z.object({
+    title: z.string(),
+    heroMiddleLine: z.string(),
+  }),
+});
+
+export const collections = { services, coaches, home };

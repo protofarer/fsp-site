@@ -1,48 +1,47 @@
 ---
 import type { CollectionEntry } from 'astro:content';
-import { render } from 'astro:content'
-import { Image } from 'astro:assets'
+import { render } from 'astro:content';
+import { Image } from 'astro:assets';
 import Card from '../../components/Card.astro';
 import Prose from '../../components/Prose.astro';
-import { slugify } from '../../utils'
-
-// TODO: damn treating the local yet specified by url as a remote image
-// - steven uploads via admin
-// - image saved to git repo under src/assets/img/steven.jpeg
-// - would like to of course trigger a rebuild and import the image here (Astro optimized images... see astro image component???
+import { slugify } from '../../utils';
 
 interface Props {
   coach: CollectionEntry<'coaches'>;
 }
 
 const { coach } = Astro.props;
+const { Content } = await render(coach);
+
+const maxSide = 512;
 
 const classCoachName = 'text-xl font-semibold text-center';
 const classSubname = 'text-md';
 const classBodyText =
   'text-md md:text-lg md:max-w-3xl px-4 leading-relaxed space-y-4';
-
-const { Content } = await render(coach)
-const maxSide = 512
 ---
 
-<Card id={`${slugify(coach.data.coachName)}`} class="space-y-4">
+<Card id={`${slugify(coach.data.title)}`} class="space-y-4">
+  {
+    coach.data.coachImage && (
       <div class="flex justify-center items-center">
         <Image
           src={coach.data.coachImage}
-          alt={`Photo of Coach ${coach.data.coachName}`}
+          alt={`Photo of Coach ${coach.data.title}`}
           height={maxSide}
           width={maxSide}
           class="shadow-md rounded-md object-contain max-h-[512px] max-w-[512px]"
         />
       </div>
-      <div class="flex flex-col gap-1 items-center">
-        <h2 class={classCoachName}>{coach.data.coachName}</h2>
-        <p class={classSubname}>{coach.data.position}</p>
-      </div>
-      <div class={classBodyText}>
-        <Prose>
-          <Content />
-        </Prose>
-      </div>
-    </Card>
+    )
+  }
+  <div class="flex flex-col gap-1 items-center">
+    <h2 class={classCoachName}>{coach.data.title}</h2>
+    <p class={classSubname}>{coach.data.position}</p>
+  </div>
+  <div class={classBodyText}>
+    <Prose>
+      <Content />
+    </Prose>
+  </div>
+</Card>

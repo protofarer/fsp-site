@@ -22,7 +22,7 @@ const maxCompactSide = 128;
       <div class="flex justify-center items-center">
         <Image
           src={coach.data.coachBlurbImage}
-          alt={`Photo of Coach ${coach.data.coachName}`}
+          alt={`Photo of Coach ${coach.data.title}`}
           height={maxFullSide}
           width={maxFullSide}
           style={{ borderRadius: '50%', border: '3px solid white' }}
@@ -30,7 +30,7 @@ const maxCompactSide = 128;
         />
         <Image
           src={coach.data.coachBlurbImage}
-          alt={`Photo of Coach ${coach.data.coachName}`}
+          alt={`Photo of Coach ${coach.data.title}`}
           height={maxCompactSide}
           width={maxCompactSide}
           style={{ borderRadius: '50%', border: '3px solid white' }}
@@ -40,14 +40,14 @@ const maxCompactSide = 128;
     )
   }
   <h2 class="text-xl font-semibold text-center text-white">
-    {coach.data.coachName}
+    {coach.data.title}
   </h2>
   <p class="leading-relaxed text-white">
     {coach.data.blurb}
   </p>
   <div>
     <CustomLink
-      href={`${SITE_MAP.coaches}#${slugify(coach.data.coachName)}`}
+      href={`${SITE_MAP.coaches}#${slugify(coach.data.title)}`}
       class="text-blue-300 hover:text-blue-500 hover:underline"
       >Read More</CustomLink
     >
