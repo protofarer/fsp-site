@@ -2,6 +2,14 @@ import { defineCollection, z } from 'astro:content';
 
 import { glob } from 'astro/loaders';
 
+const events = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/events' }),
+  schema: z.object({
+    title: z.string(),
+    flyer: z.string().optional(),
+  }),
+});
+
 const services = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/services' }),
   // markdown front matter as fields
@@ -34,4 +42,4 @@ const home = defineCollection({
   }),
 });
 
-export const collections = { services, coaches, home };
+export const collections = { services, coaches, home, events };

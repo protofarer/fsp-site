@@ -1,0 +1,30 @@
+---
+import { type CollectionEntry } from 'astro:content';
+import { render } from 'astro:content';
+import CustomLink from '@components/CustomLink.astro';
+import Card from '../../components/Card.astro';
+import Prose from '../../components/Prose.astro';
+import { slugify } from '../../utils';
+interface Props {
+  event: CollectionEntry<'events'>;
+}
+
+const { event } = Astro.props;
+const { Content } = await render(event);
+---
+
+<Card id={`${slugify(event.data.title)}`}>
+  <Prose>
+    {
+      event.data.flyer ? (
+        <CustomLink href={event.data.flyer}>
+          {' '}
+          <h1 class='text-blue-600'>{event.data.title}</h1>{' '}
+        </CustomLink>
+      ) : (
+        <h1>{event.data.title}</h1>
+      )
+    }
+    <Content />
+  </Prose>
+</Card>

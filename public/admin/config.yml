@@ -1,10 +1,21 @@
 local_backend: true
-media_folder: /src/assets/img
-public_folder: /src/assets/img
+media_folder: static/uploads
+public_folder: /public/uploads
 backend:
   name: git-gateway
   repo: protofarer/fsp-site
 collections:
+  - label: "Events"
+    name: "events"
+    folder: "src/content/events"
+    create: true
+    fields:
+    - { label: "Title", name: "title", widget: "string", description: "Name of the event" }
+    - { label: "Body", name: "body", widget: "markdown", description: "Description of the event" }
+    - label: "Flyer"
+      name: "flyer"
+      widget: "file"
+      required: false
   - label: "Services"
     name: "services"
     folder: "src/content/services"
