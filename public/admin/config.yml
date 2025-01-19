@@ -1,4 +1,4 @@
-local_backend: true
+# local_backend: true
 media_folder: static/uploads
 public_folder: /public/uploads
 backend:
