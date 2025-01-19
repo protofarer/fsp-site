@@ -75,15 +75,13 @@ const { Content: WelcomeContent } = await render(home)
     document.head.appendChild(script)
 
     script.onload = () => {
-      if (window.netlifyIdentity) {
-        window.netlifyIdentity.on('init', user => {
-          if (!user) {
-            window.netlifyIdentity.on('login', () => {
-              window.location.href = '/admin/'
-            })
-          }
-        })
-      }
+      window.netlifyIdentity.on('init', user => {
+        if (!user) {
+          window.netlifyIdentity.on('login', () => {
+            window.location.href = '/admin/'
+          })
+        }
+      })
     }
   }
 </script>

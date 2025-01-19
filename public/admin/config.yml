@@ -4,7 +4,8 @@ public_folder: /public/uploads
 backend:
   name: git-gateway
   repo: protofarer/fsp-site
-branch: "main"
+  branch: main
+display_url: https://frontierperformance.netlify.app
 collections:
   - label: "Events"
     name: "events"
