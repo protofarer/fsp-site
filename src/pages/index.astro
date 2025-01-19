@@ -65,3 +65,25 @@ const { Content: WelcomeContent } = await render(home)
     <ContactForm />
   </Section>
 </BaseLayout>
+
+<script>
+  // Handle the case when netlify redirects (default, unable to config) to index after logging in
+  if (typeof window !== 'undefined' && window.location.href.includes('#invite_token')) {
+    const script = document.createElement('script')
+    script.src = 'https://identity.netlify.com/v1/netlify-identity-widget.js'
+    script.async = true
+    document.head.appendChild(script)
+
+    script.onload = () => {
+      if (window.netlifyIdentity) {
+        window.netlifyIdentity.on('init', user => {
+          if (!user) {
+            window.netlifyIdentity.on('login', () => {
+              window.location.href = '/admin/'
+            })
+          }
+        })
+      }
+    }
+  }
+</script>
