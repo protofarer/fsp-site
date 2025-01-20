@@ -1,6 +1,6 @@
 ---
 title: Spring Camp
-flyer: /static/uploads/frontier-sports-baseball-camps.pdf
+flyer: /uploads/frontier-sports-baseball-camps.pdf
 ---
 * Dates: 3/1/25 - 4/1/25
 * Location: Turner Field

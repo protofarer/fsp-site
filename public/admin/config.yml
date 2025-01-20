@@ -1,6 +1,6 @@
 # local_backend: true
-media_folder: /public/uploads
-public_folder: /public/uploads
+media_folder: /src/assets
+public_folder: /src/assets
 backend:
   name: git-gateway
   repo: protofarer/fsp-site
