@@ -1,5 +1,5 @@
 # local_backend: true
-media_folder: static/uploads
+media_folder: /public/uploads
 public_folder: /public/uploads
 backend:
   name: git-gateway
