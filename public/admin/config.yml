@@ -18,6 +18,8 @@ collections:
       name: "flyer"
       widget: "file"
       required: false
+      media_library:
+        media_folder: files
   - label: "Services"
     name: "services"
     folder: "src/content/services"
