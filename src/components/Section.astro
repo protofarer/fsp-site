@@ -14,7 +14,7 @@ const {
   title,
   class: className = '',
   titleSize = 'lg',
-  titleColor = 'text-slate-700',
+  titleColor,
   spacing = 'md',
   background = 'none',
 } = Astro.props;
@@ -24,8 +24,13 @@ const titleSizes = {
   md: 'text-2xl font-bold',
   lg: 'text-3xl font-bold',
 };
+const titleColors = {
+none: 'text-slate-700',
+light: 'text-slate-700',
+dark: 'text-white'
+}
 
-const titleClass = [titleColor, titleSizes[titleSize], "text-center", "drop-shadow-lg"];
+const titleClass = [titleColor || titleColors[background], titleSizes[titleSize], "text-center", "drop-shadow-lg"];
 
 const spacingSizes = {
   sm: 'py-4 md:py-6',

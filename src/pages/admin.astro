@@ -19,14 +19,14 @@
       badgeContainer.style.justifyContent = "center"
 
       const badge = document.createElement('a');
-      const body = document.body
       badge.href = "https://app.netlify.com/sites/frontierperformance/deploys"
       const img = document.createElement('img')
       img.src = "https://api.netlify.com/api/v1/badges/f395fc57-df2a-4bd3-b609-9c8a2b9a9b57/deploy-status"
       img.alt = "Netlify Status"
       badge.appendChild(img)
       badgeContainer.appendChild(badge)
-      body.appendChild(badgeContainer)
+      const headerNav = document.querySelector('header nav')
+      headerNav.appendChild(badgeContainer)
     </script>
     <!-- Customize the netlify identity widget to refresh on logout preventing users from using the cms when not logged in and then seeing an error -->
     <!-- <script is:inline>netlifyIdentity.on('logout', () => location.reload());</script> -->
