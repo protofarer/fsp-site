@@ -1,5 +1,6 @@
-import { copyFile, readdir, mkdir } from 'fs/promises';
+import { copyFile, readdir, mkdir, readFile, writeFile } from 'fs/promises';
 import { join } from 'path';
+import { glob } from 'glob';
 
 async function copyPDFs() {
   const assetsDir = 'src/assets/cms';
@@ -21,4 +22,16 @@ async function copyPDFs() {
   }
 }
 
+async function transformPDFUrls() {
+  const files = await glob('src/content/**/*.md');
+
+  for (const file of files) {
+    let content = await readFile(file, 'utf-8');
+
+    // Transform URLs from /src/content/assets/file.pdf to /assets/file.pdf
+    content = content.replace(/\(\/src\/assets\/cms\/(.*?\.pdf)\)/g, '(/$1)');
+    await writeFile(file, content);
+  }
+}
 await copyPDFs();
+await transformPDFUrls();
