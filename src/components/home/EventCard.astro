@@ -19,7 +19,7 @@ const { Content } = await render(event);
       event.data.flyer ? (
         <CustomLink href={event.data.flyer}>
           {' '}
-          <h1 class='text-blue-600'>{event.data.title}</h1>{' '}
+          <h1 class='text-blue-600'>{event.data.title}{' '}<span class='text-xs'>pdf</span></h1>{' '}
         </CustomLink>
       ) : (
         <h1>{event.data.title}</h1>

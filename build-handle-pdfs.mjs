@@ -53,5 +53,7 @@ async function transformPDFUrls() {
   }
 }
 
+console.log(`=== Running pdf build script ===`);
+
 await copyPDFs();
 await transformPDFUrls();
