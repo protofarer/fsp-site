@@ -19,7 +19,7 @@ collections:
       widget: "file"
       required: false
       media_library:
-        media_folder: files
+        public_folder: files
   - label: "Services"
     name: "services"
     folder: "src/content/services"
