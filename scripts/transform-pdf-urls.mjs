@@ -1,29 +1,7 @@
-import { copyFile, readdir, mkdir, readFile, writeFile } from 'fs/promises';
-import { join } from 'path';
+import { readFile, writeFile } from 'fs/promises';
 import { glob } from 'glob';
 
-async function copyPDFs() {
-  const assetsDir = 'src/assets/cms';
-  const targetDir = 'dist';
-
-  try {
-    await mkdir(targetDir, { recursive: true });
-
-    const files = await readdir(assetsDir);
-    for (const file of files) {
-      if (file.toLowerCase().endsWith('.pdf')) {
-        await copyFile(join(assetsDir, file), join(targetDir, file));
-        console.log(`Copied ${file} to ${targetDir}`);
-      }
-    }
-  } catch (err) {
-    console.error('Error copying PDFs:', err);
-    process.exit(1);
-  }
-}
-
 async function transformPDFUrls() {
-  console.log(`RUN transformPDFUrls`);
   const sourcePattern = 'src/assets/cms';
 
   try {
@@ -53,7 +31,6 @@ async function transformPDFUrls() {
   }
 }
 
-console.log(`=== Running pdf build script ===`);
+console.log(`=== Running transform pdf urls ===`);
 
-await copyPDFs();
 await transformPDFUrls();
