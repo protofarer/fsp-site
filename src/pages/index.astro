@@ -3,24 +3,23 @@ import { getCollection, render, type CollectionEntry } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Section from '../components/Section.astro';
 import LandingHero from '../components/LandingHero.astro';
-import ServiceBlurbCard from '../components/home/ServiceBlurbCard.astro'
-import CoachBlurbCard from '../components/home/CoachBlurbCard.astro'
-import ContactForm from '../components/home/ContactForm.astro'
-import EventCard from '../components/home/EventCard.astro'
+import ServiceBlurbCard from '../components/home/ServiceBlurbCard.astro';
+import CoachBlurbCard from '../components/home/CoachBlurbCard.astro';
+import ContactForm from '../components/home/ContactForm.astro';
+import EventCard from '../components/home/EventCard.astro';
 
-type Service = CollectionEntry<'services'>
+type Service = CollectionEntry<'services'>;
 const allServices = await getCollection('services');
 
-type Coach = CollectionEntry<'coaches'>
+type Coach = CollectionEntry<'coaches'>;
 const allCoaches = await getCollection('coaches');
 
-type Event = CollectionEntry<'events'>
-const allEvents = await getCollection('events')
+type Event = CollectionEntry<'events'>;
+const allEvents = await getCollection('events');
 
-const allHome = await getCollection('home')
-const home = allHome[0]
-const { Content: WelcomeContent } = await render(home)
-
+const allHome = await getCollection('home');
+const home = allHome[0];
+const { Content: WelcomeContent } = await render(home);
 ---
 
 <BaseLayout>
@@ -36,29 +35,40 @@ const { Content: WelcomeContent } = await render(home)
       </div>
     </div>
   </Section>
-  <Section id="events" title="Upcoming Events" background="dark" titleColor="text-white">
-    <div class="py-6 md:py-8 flex flex-col items-center">
-      <div class="max-w-2xl space-y-4 md:space-y-8 w-full">
-        {allEvents.map((event: Event) => <EventCard event={event} /> )}
-      </div>
-    </div>
-  </Section>
+  {
+    allEvents.length && (
+      <Section
+        id="events"
+        title="Upcoming Events"
+        background="dark"
+        titleColor="text-white"
+      >
+        <div class="py-6 md:py-8 flex flex-col items-center">
+          <div class="max-w-2xl space-y-4 md:space-y-8 w-full">
+            {allEvents.map((event: Event) => (
+              <EventCard event={event} />
+            ))}
+          </div>
+        </div>
+      </Section>
+    )
+  }
   <Section id="services" title="Services">
     <ul
       class="grid md:grid-cols-2 xl:grid-cols-3 gap-8 md:gap-12 py-4 px-2 md:p-6 text-center"
     >
-    {allServices.map((service: Service) => (
-      <li class="flex">
-        <ServiceBlurbCard service={service} />
-      </li>
-    ))}
+      {
+        allServices.map((service: Service) => (
+          <li class="flex">
+            <ServiceBlurbCard service={service} />
+          </li>
+        ))
+      }
     </ul>
   </Section>
   <Section id="coaches" title="Coaches" background="light">
     <div class="grid grid-cols-1 md:grid-cols-2 py-4 px-2 md:p-6 gap-8">
-    {allCoaches.map((coach: Coach) => (
-        <CoachBlurbCard coach={coach} />
-    ))}
+      {allCoaches.map((coach: Coach) => <CoachBlurbCard coach={coach} />)}
     </div>
   </Section>
   <Section id="contact" title="Contact" spacing="lg">
@@ -68,20 +78,23 @@ const { Content: WelcomeContent } = await render(home)
 
 <script>
   // Handle the case when netlify redirects (default, unable to config) to index after logging in
-  if (typeof window !== 'undefined' && window.location.href.includes('#invite_token')) {
-    const script = document.createElement('script')
-    script.src = 'https://identity.netlify.com/v1/netlify-identity-widget.js'
-    script.async = true
-    document.head.appendChild(script)
+  if (
+    typeof window !== 'undefined' &&
+    window.location.href.includes('#invite_token')
+  ) {
+    const script = document.createElement('script');
+    script.src = 'https://identity.netlify.com/v1/netlify-identity-widget.js';
+    script.async = true;
+    document.head.appendChild(script);
 
     script.onload = () => {
-      window.netlifyIdentity.on('init', user => {
+      window.netlifyIdentity.on('init', (user) => {
         if (!user) {
           window.netlifyIdentity.on('login', () => {
-            window.location.href = '/admin/'
-          })
+            window.location.href = '/admin/';
+          });
         }
-      })
-    }
+      });
+    };
   }
 </script>

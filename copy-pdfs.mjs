@@ -1,4 +1,4 @@
-import { copyFile, readdir } from 'fs/promises';
+import { copyFile, readdir, mkdir } from 'fs/promises';
 import { join } from 'path';
 
 async function copyPDFs() {
