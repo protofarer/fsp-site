@@ -4,6 +4,7 @@ backend:
   repo: protofarer/fsp-site
   branch: main
 media_folder: /src/assets
+public_folder: /src/assets
 display_url: https://frontierperformance.netlify.app
 collections:
   - label: "Events"
