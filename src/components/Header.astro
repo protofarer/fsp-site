@@ -89,6 +89,17 @@ const pathname = new URL(Astro.request.url).pathname;
   </div>
 </div>
 
+<!-- Fix scroll position for navigating to a fragment -->
+<style is:global>
+  :root {
+    --header-height: 3rem;
+  }
+
+  [id] {
+    scroll-margin-top: var(--header-height);
+  }
+</style>
+
 <script>
   const menuToggle = document.getElementById('menu-toggle');
   const mobileMenu = document.getElementById('mobile-menu');
