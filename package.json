@@ -4,7 +4,7 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "decap-server & astro dev",
-    "build": "astro build",
+    "build": "astro build && node copy-pdfs.mjs",
     "preview": "decap-server astro preview",
     "astro": "astro",
     "format": "npx prettier --write **/*.astro ."

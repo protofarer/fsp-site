@@ -4,7 +4,7 @@ backend:
   repo: protofarer/fsp-site
   branch: main
 media_folder: /src/assets/cms/
-public_folder: /src/assets/cms/
+public_folder: /
 display_url: https://frontierperformance.netlify.app
 collections:
   - label: "Events"
@@ -18,8 +18,6 @@ collections:
       name: "flyer"
       widget: "file"
       required: false
-      media_library:
-        public_folder: files
   - label: "Services"
     name: "services"
     folder: "src/content/services"
