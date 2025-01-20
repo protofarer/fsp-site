@@ -15,13 +15,11 @@
     <!-- </a> -->
     <script is:inline>
       const badge = document.createElement('a');
-      const body = document.getElementByTagName("body")
+      const body = document.body
       badge.href = "https://app.netlify.com/sites/frontierperformance/deploys"
-
       const img = document.createElement('img')
       img.src = "https://api.netlify.com/api/v1/badges/f395fc57-df2a-4bd3-b609-9c8a2b9a9b57/deploy-status"
       img.alt = "Netlify Status"
-
       badge.appendChild(img)
       body.appendChild(badge)
     </script>
