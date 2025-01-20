@@ -1,6 +1,6 @@
 ---
 title: Test Camp
-flyer: /frontier-sports-baseball-camps.pdf
+flyer: /sentinels-of-ether.pdf
 ---
 \- 5
 
