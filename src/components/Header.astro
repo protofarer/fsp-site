@@ -11,7 +11,7 @@ const linkItems = [
   { label: 'About', href: SITE_MAP.about },
   { label: 'Contact', href: SITE_MAP.contact },
 ];
-const classActive = '!text-emerald-700 !font-bold transition-colors'
+const classActive = '!text-emerald-700 !font-bold transition-colors';
 const pathname = new URL(Astro.request.url).pathname;
 ---
 
@@ -53,7 +53,10 @@ const pathname = new URL(Astro.request.url).pathname;
             linkItems.map(
               (item) =>
                 item.href !== '/' && (
-                <NavLink href={item.href} class:list={[pathname === item.href && classActive]}>
+                  <NavLink
+                    href={item.href}
+                    class:list={[pathname === item.href && classActive]}
+                  >
                     {item.label}
                   </NavLink>
                 )
@@ -62,9 +65,19 @@ const pathname = new URL(Astro.request.url).pathname;
         </div>
       </div>
     </div>
+  </nav>
+</header>
 
-    <!-- Mobile navigation -->
-    <div id="mobile-menu" class="hidden md:hidden mt-2 space-y-1">
+<!-- Mobile nav menu -->
+<div id="mobile-menu" class="fixed inset-0 z-50 hidden md:hidden">
+  <!-- Backdrop -->
+  <div class="absolute inset-0 bg-black/20 backdrop-blur-sm"></div>
+
+  <!-- Menu content -->
+  <div
+    class="absolute right-0 top-0 h-full w-64 bg-white shadow-lg transform transition-transform duration-200 translate-x-full"
+  >
+    <div class="p-4 space-y-1">
       {
         linkItems.map((item) => (
           <NavLink href={item.href} class={linkClassCompact}>
@@ -73,38 +86,77 @@ const pathname = new URL(Astro.request.url).pathname;
         ))
       }
     </div>
-  </nav>
-</header>
+  </div>
+</div>
 
 <script>
   const menuToggle = document.getElementById('menu-toggle');
   const mobileMenu = document.getElementById('mobile-menu');
+  const menuContent = mobileMenu?.querySelector('div:last-child');
+
   const header = document.querySelector('header');
 
-  if (menuToggle && mobileMenu) {
-    menuToggle.addEventListener('click', () => {
-      mobileMenu.classList.toggle('hidden');
+  if (menuToggle && mobileMenu && menuContent) {
+    let isAnimating = false
+
+    const openMenu = () => {
+      if (isAnimating) return;
+      isAnimating = true
+
+      mobileMenu.classList.remove('hidden')
+
+      requestAnimationFrame(() => {
+        menuContent.classList.remove('translate-x-full');
+        setTimeout(() => { isAnimating = false}, 200)
+      });
+    }
+
+    const closeMenu = () => {
+      if (isAnimating) return
+      isAnimating = true
+
+      menuContent.classList.add('translate-x-full');
+      // Wait for anim to complete before hiding
+      setTimeout(() => {
+        mobileMenu.classList.add('hidden');
+        isAnimating = false
+      }, 200);
+    };
+
+
+    menuToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (mobileMenu.classList.contains('hidden')) {
+        openMenu()
+      } else {
+        closeMenu()
+      }
     });
+
+    // Animate in
+    requestAnimationFrame(() => {
+      menuContent.classList.remove('translate-x-full');
+    });
+
+
+    // Close menu when click backdrop or menu area outside of links
+    mobileMenu.addEventListener('click', (e) => {
+      const target = e.target as HTMLElement;
+      const isLink = target.tagName === 'A' || target.closest('a')
+      if (!isLink) {
+        closeMenu()
+      }
+    })
 
     // Close menu when clicking a link
     mobileMenu.querySelectorAll('a').forEach((link) => {
-      link.addEventListener('click', () => {
-        mobileMenu.classList.add('hidden');
-      });
-    });
-
-    // Close menu when clicking outside
-    document.addEventListener('click', (event) => {
-      const isClickInsideHeader = header?.contains(event.target as Node);
-      if (!isClickInsideHeader) {
-        mobileMenu.classList.add('hidden');
-      }
+      link.addEventListener('click', closeMenu)
     });
 
     // Handle escape key
     document.addEventListener('keydown', (event) => {
-      if (event.key === 'Escape') {
-        mobileMenu.classList.add('hidden');
+      if (event.key === 'Escape' && !mobileMenu.classList.contains('hidden')) {
+        closeMenu()
       }
     });
   }
