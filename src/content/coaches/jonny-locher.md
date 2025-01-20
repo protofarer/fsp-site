@@ -1,12 +1,12 @@
 ---
 title: Jonny Locher
 position: Co-Founder
-coachImage: /src/assets/bio-jonny.jpeg
+coachImage: /src/assets/cms/bio-jonny.jpeg
 blurb: Coached at youth, High School and Divison 1 college levels. He is the
   head coach at Highline HS, and won the league championship during his first
   season. Jonny has also coached the Anchorage Glacier Pilots in the Alaska
   Baseball League, a Division 1 college summer league.
-coachBlurbImage: /src/assets/bio-locher-square.jpeg
+coachBlurbImage: /src/assets/cms/bio-locher-square.jpeg
 ---
 Jonny Locher, a Seattle native, attended Highline HS where he was an All-American and 3 times first team All-State Center fielder. Jonny was also a nationally-competitive track athlete, and placed 4th place in the Long Jump at AAU national championships as an 8th grader. He successfully ran the 100m and 200m, and his background in track has developed his experience in Speed and Strength development.
 

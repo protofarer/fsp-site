@@ -3,8 +3,8 @@ backend:
   name: git-gateway
   repo: protofarer/fsp-site
   branch: main
-media_folder: /src/assets
-public_folder: /src/assets
+media_folder: /src/assets/cms/
+public_folder: /src/assets/cms/
 display_url: https://frontierperformance.netlify.app
 collections:
   - label: "Events"
@@ -42,7 +42,7 @@ collections:
       - { label: "Body", name: "body", widget: "markdown" }
       - { label: "Coach Bio Image", name: "coachImage", widget: "image", required: false }
       - { label: "Landing Page Blurb", name: "blurb", widget: "markdown", required: false }
-      - { label: "Coach Blurb Image (square crop)", name: "coachBlurbImage", widget: "image", description: "Must be a square crop image", required: false }
+      - { label: "Coach Blurb Image (square crop)", name: "coachBlurbImage", widget: "image", hint: "Must be a square crop image", required: false }
   - label: "Home Page"
     name: "home"
     folder: "src/content/home"
