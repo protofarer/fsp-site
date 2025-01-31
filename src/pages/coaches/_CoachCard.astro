@@ -13,12 +13,11 @@ interface Props {
 const { coach } = Astro.props;
 const { Content } = await render(coach);
 
-const maxSide = 512;
+const maxFullSide = 512;
 
-const classCoachName = 'text-xl font-semibold text-center';
-const classSubname = 'text-md';
-const classBodyText =
-  'text-md md:text-lg md:max-w-3xl px-4 leading-relaxed space-y-4';
+const imageWidth = Math.min(maxFullSide, coach.data.coachImage?.width || maxFullSide);
+const imageHeight = Math.min(maxFullSide, coach.data.coachImage?.height || maxFullSide);
+
 ---
 
 <Card id={`${slugify(coach.data.title)}`} class="space-y-4">
@@ -28,20 +27,20 @@ const classBodyText =
         <Image
           src={coach.data.coachImage}
           alt={`Photo of Coach ${coach.data.title}`}
-          height={maxSide}
-          width={maxSide}
-          class="shadow-md rounded-md object-contain max-h-[512px] max-w-[512px]"
+          height={imageHeight}
+          width={imageWidth}
+          class="shadow-md rounded-md object-contain w-full h-auto max-w-full sm:max-w-[512px] sm:max-h-[512px]"
         />
       </div>
     )
   }
   <div class="flex flex-col gap-1 items-center">
-    <h2 class={classCoachName}>{coach.data.title}</h2>
-    <p class={classSubname}>{coach.data.position}</p>
+    <h2 class='text-xl font-semibold text-center'>{coach.data.title}</h2>
+    <p class='text-md'>{coach.data.position}</p>
   </div>
-  <div class={classBodyText}>
+  <div class='text-md px-1 sm:px-4 md:text-lg md:max-w-3xl leading-relaxed space-y-4' >
     <Prose>
-      <Content />
+    <Content />
     </Prose>
   </div>
 </Card>
