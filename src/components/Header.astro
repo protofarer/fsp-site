@@ -2,8 +2,9 @@
 import NavLink from './NavLink.astro';
 import SITE_MAP from '../constants/site-map';
 import CustomLink from './CustomLink.astro';
-import { Image } from 'astro:assets';
-import favicon from '../../public/favicon.svg'
+import ButtonLink from './ButtonLink.astro';
+// import { Image } from 'astro:assets';
+// import favicon from '../../public/favicon.svg'
 
 const linkClassCompact = 'font-bold tracking-wide text-center block w-full';
 const linkItems = [
@@ -20,13 +21,16 @@ const pathname = new URL(Astro.request.url).pathname;
 <header class="sticky top-0 z-50 shadow-md flex justify-center bg-white">
   <nav class="w-full py-1 px-4 max-w-3xl">
     <div class="flex justify-between items-center">
-      <CustomLink href="/">
-        <div
-          class="px-2 py-1"
-        >
-        <Image height={48} width={48} src={favicon} alt="frontier sports performance logo"></Image>
-        </div>
-      </CustomLink>
+      <!-- <CustomLink href="/"> -->
+      <!--   <div -->
+      <!--     class="px-2 py-1" -->
+      <!--   > -->
+      <!--   <Image height={48} width={48} src={favicon} alt="frontier sports performance logo"></Image> -->
+      <!--   </div> -->
+      <!-- </CustomLink> -->
+      <ButtonLink variant='outlined' href="/" class='py-1 rounded-lg'>
+        <p class="text-xl font-bold">FSP</p>
+      </ButtonLink>
 
       <!-- Mobile menu button -->
       <button
