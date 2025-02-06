@@ -24,8 +24,8 @@ const { Content: WelcomeContent } = await render(home);
 
 <BaseLayout>
   <LandingHero />
-  <Section id="welcome-text" background="light" class="py-12">
-    <div class:list={['py-6 md:py-8']}>
+  <Section id="welcome-text" background="light">
+    <div class='py-6 md:py-8'>
       <div class="flex justify-center">
         <div
           class="px-4 space-y-6 md:space-y-10 text-lg md:text-xl md:max-w-4xl text-slate-700 leading-relaxed text-center prose-h3:tracking-wide"
@@ -53,17 +53,20 @@ const { Content: WelcomeContent } = await render(home);
     ) : null
   }
   <Section id="services" title="Services">
-    <ul
-      class="grid md:grid-cols-2 xl:grid-cols-3 gap-8 md:gap-12 py-4 px-2 md:p-6 text-center"
-    >
-      {
+    <div class='py-6 px-2 md:p-10'>
+      <ul
+        class="grid md:grid-cols-2 xl:grid-cols-3 gap-8 md:gap-12 text-center"
+        >
+        {
         allServices.map((service: Service) => (
-          <li class="flex">
-            <ServiceBlurbCard service={service} />
-          </li>
+        <li class="flex">
+          <ServiceBlurbCard service={service} />
+        </li>
         ))
-      }
-    </ul>
+        }
+      </ul>
+
+    </div>
   </Section>
   <Section id="coaches" title="Coaches" background="light">
     <div class="grid grid-cols-1 md:grid-cols-2 py-4 px-2 md:p-6 gap-8">

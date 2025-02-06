@@ -1,4 +1,6 @@
 ---
+import { twMerge } from 'tailwind-merge';
+
 interface Props {
   id?: string;
   title?: string;
@@ -19,23 +21,29 @@ const {
   background = 'none',
 } = Astro.props;
 
+const classBase = '';
+
 const titleSizes = {
   sm: 'text-xl font-semibold',
   md: 'text-2xl font-bold',
   lg: 'text-3xl font-bold',
 };
 const titleColors = {
-none: 'text-slate-700',
-light: 'text-slate-700',
-dark: 'text-white'
-}
+  none: 'text-slate-700',
+  light: 'text-slate-700',
+  dark: 'text-white',
+};
 
-const titleClass = [titleColor || titleColors[background], titleSizes[titleSize], "text-center", "drop-shadow-lg"];
+const computedTitleClass = twMerge(
+  titleColor || titleColors[background],
+  titleSizes[titleSize],
+  'text-center drop-shadow-lg mb-1',
+);
 
 const spacingSizes = {
-  sm: 'py-4 md:py-6',
-  md: 'py-6 md:py-8',
-  lg: 'py-8 md:py-10',
+  sm: 'py-6 md:py-8',
+  md: 'py-8 md:py-10',
+  lg: 'py-10 md:py-12',
 };
 
 const backgrounds = {
@@ -44,16 +52,17 @@ const backgrounds = {
   dark: 'bg-slate-700',
 };
 
-const sectionClass = [
+const computedSectionClass = twMerge(
+  classBase,
   spacingSizes[spacing],
   backgrounds[background],
-  className,
-];
+  className
+);
 ---
 
-<section id={id} class:list={sectionClass}>
+<section id={id} class={computedSectionClass}>
   <div>
-    {title && <h2 class:list={[titleClass, "mb-1"]}>{title}</h2>}
+    {title && <h2 class={computedTitleClass}>{title}</h2>}
     <div class="space-y-4">
       <slot />
     </div>
