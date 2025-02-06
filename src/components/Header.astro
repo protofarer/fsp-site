@@ -111,8 +111,6 @@ const pathname = new URL(Astro.request.url).pathname;
   const mobileMenu = document.getElementById('mobile-menu');
   const menuContent = mobileMenu?.querySelector('div:last-child');
 
-  const header = document.querySelector('header');
-
   if (menuToggle && mobileMenu && menuContent) {
     let isAnimating = false
 

@@ -1,5 +1,5 @@
 ---
-import data from '../../content/contact.json'
+import data from '../../content/contact.json';
 import CustomLink from '../../components/CustomLink.astro';
 import IconPhone from '../../components/IconPhone.astro';
 import IconEmail from '../../components/IconEmail.astro';
@@ -10,70 +10,75 @@ const inputClasses =
 const classTextArea = 'min-h-[120px] resize-y';
 const labelClasses = 'text-slate-700 font-bold';
 ---
-    <div class="px-4 space-y-4">
-      <p class="text-center mt-3">
-        {data.message}
-      </p>
-      <div class="flex justify-center">
-        <div class="flex flex-col space-y-2">
-          <div class="flex items-center space-x-3">
-            <IconEmail />
-            <CustomLink href=`mailto:${data.email}`>{data.email}</CustomLink>
-          </div>
-          <div class="flex items-center space-x-3">
-            <IconPhone />
-            <CustomLink href=`phone:${stripPhoneNumber(data.phone)}`
-              >{displayPhoneNumber(data.phone)}</CustomLink
-            >
-          </div>
-        </div>
+
+<div class="px-4 space-y-4">
+  <p class="text-center mt-3">
+    {data.message}
+  </p>
+  <div class="flex justify-center">
+    <div class="flex flex-col space-y-2">
+      <div class="flex items-center space-x-3">
+        <IconEmail />
+        <CustomLink href=`mailto:${data.email}`>{data.email}</CustomLink>
       </div>
-      <form name="contact" class="max-w-xl mx-auto py-4 space-y-6" data-netlify="true">
-        <div class="space-y-4">
-          <div class="flex flex-col space-y-2">
-            <label for="name" class={labelClasses}>Name</label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              placeholder="John Doe"
-              class={inputClasses}
-            />
-          </div>
-          <div class="flex flex-col space-y-2">
-            <label for="email" class={labelClasses}>Email</label>
-            <input
-              type="text"
-              id="email"
-              name="email"
-              placeholder="john@example.com"
-              class={inputClasses}
-            />
-          </div>
-          <div class="flex flex-col space-y-2">
-            <label for="subject" class={labelClasses}>Subject</label>
-            <input
-              type="text"
-              id="subject"
-              name="subject"
-              placeholder="How can we help?"
-              class={inputClasses}
-            />
-          </div>
-          <div class="flex flex-col space-y-2">
-            <label for="message" class={labelClasses}>Message</label>
-            <textarea
-              id="message"
-              name="message"
-              placeholder="Your message here..."
-              class:list={[inputClasses, classTextArea]}></textarea>
-          </div>
-          <button
-            type="submit"
-            class="w-full px-6 py-3 bg-slate-800 text-white rounded-lg hover:bg-slate-800 transition-colors duration-200"
-          >
-            Send Message
-          </button>
-        </div>
-      </form>
+      <div class="flex items-center space-x-3">
+        <IconPhone />
+        <CustomLink href=`phone:${stripPhoneNumber(data.phone)}`
+          >{displayPhoneNumber(data.phone)}</CustomLink
+        >
       </div>
+    </div>
+  </div>
+  <form
+    name="contact"
+    class="max-w-xl mx-auto py-4 space-y-6"
+    data-netlify="true"
+  >
+    <div class="space-y-4">
+      <div class="flex flex-col space-y-2">
+        <label for="name" class={labelClasses}>Name</label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          placeholder="John Doe"
+          class={inputClasses}
+        />
+      </div>
+      <div class="flex flex-col space-y-2">
+        <label for="email" class={labelClasses}>Email</label>
+        <input
+          type="text"
+          id="email"
+          name="email"
+          placeholder="john@example.com"
+          class={inputClasses}
+        />
+      </div>
+      <div class="flex flex-col space-y-2">
+        <label for="subject" class={labelClasses}>Subject</label>
+        <input
+          type="text"
+          id="subject"
+          name="subject"
+          placeholder="How can we help?"
+          class={inputClasses}
+        />
+      </div>
+      <div class="flex flex-col space-y-2">
+        <label for="message" class={labelClasses}>Message</label>
+        <textarea
+          id="message"
+          name="message"
+          placeholder="Your message here..."
+          class:list={[inputClasses, classTextArea]}></textarea>
+      </div>
+      <button
+        type="submit"
+        class="w-full px-6 py-3 bg-slate-800 text-white rounded-lg hover:bg-slate-800 transition-colors duration-200"
+      >
+        Send Message
+      </button>
+    </div>
+  </form>
+</div>

@@ -1,12 +1,12 @@
 ---
 import { getCollection, render, type CollectionEntry } from 'astro:content';
-import BaseLayout from '../layouts/BaseLayout.astro';
-import Section from '../components/Section.astro';
-import LandingHero from '../components/LandingHero.astro';
-import ServiceBlurbCard from '../components/home/ServiceBlurbCard.astro';
-import CoachBlurbCard from '../components/home/CoachBlurbCard.astro';
-import ContactForm from '../components/home/ContactForm.astro';
-import EventCard from '../components/home/EventCard.astro';
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Section from '@components/Section.astro';
+import LandingHero from '@components/LandingHero.astro';
+import ServiceBlurbCard from '@components/home/ServiceBlurbCard.astro';
+import CoachBlurbCard from '@components/home/CoachBlurbCard.astro';
+import ContactForm from '@components/home/ContactForm.astro';
+import EventCard from '@components/home/EventCard.astro';
 
 type Service = CollectionEntry<'services'>;
 const allServices = await getCollection('services');
@@ -36,7 +36,7 @@ const { Content: WelcomeContent } = await render(home);
     </div>
   </Section>
   {
-    allEvents.length && (
+    allEvents.length > 0 ? (
       <Section
         id="events"
         title="Upcoming Events"
@@ -50,7 +50,7 @@ const { Content: WelcomeContent } = await render(home);
           </div>
         </div>
       </Section>
-    )
+    ) : null
   }
   <Section id="services" title="Services">
     <ul
